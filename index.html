@@ -1,0 +1,2356 @@
+    <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        body{
+            background-color: #f7f8fb;
+            font-family: Geliat, Arial, sans-serif;
+        }
+        .nav-item:hover .icon {
+            transform: rotate(180deg);
+            transition: transform 0.3s ease;
+            color: #a852ff;
+        }
+        /* Your existing background setup */
+        .bg-img {
+            position: relative;
+            background-image: url('images/background.svg'); /* Your existing background */
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding-top: 5rem; /* Adjust the padding-top as needed (like pt-5) */
+        }
+
+        /* Create the bottom fade effect */
+        .bg-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%; /* Adjust this height to control the fade area */
+            background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)); /* Fade from white to transparent */
+            pointer-events: none; /* Ensure this doesn't block interactions with other elements */
+        }
+        
+
+        /* Style for the child elements */
+        .hero-main,
+        .hero-graf,
+        .hero-cash,
+        .hero-man,
+        .hero {
+            position: absolute;
+            z-index: 1; /* Ensure the images are on top of the background */
+        }
+
+        /* Optional: Image adjustments */
+        .hero-graf img,
+        .hero-cash img,
+        .hero-man img,
+        .hero img {
+            width: 100%;
+        }
+
+        .nav-link:hover{color: #a852ff !important;}
+        .bg-color{
+            background-color: #f7f8fb;
+        }
+        .bg-img1{
+            background-image: url(images/background.svg);
+            background-position: 50%;
+            background-repeat: no-repeat;
+        }
+        .navbar.bg-dark{background-color: #000000 !important;}
+        .footer-bg-img{
+            background-image: url(images/background1.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .bg-img h1{
+            color: white;
+            font-size: 90px;
+        }
+        .bg-gradiant{
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(90deg, #1179fc 25%, #dc82fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        .text-light-black{
+            color: #4b4b4b;
+        }
+        .font-size-28{
+            font-size: 28px;
+        }
+        .mt-100{
+            margin-top: 200px;
+        }
+        .progress {
+            width: 90px;
+            height: 90px !important;
+            float: left; 
+            line-height: 150px;
+            background: none;
+            margin: 20px;
+            box-shadow: none;
+            position: relative;
+        }
+        .progress:after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 12px solid #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .progress>span {
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            z-index: 1;
+        }
+        .progress .progress-left {
+            left: 0;
+        }
+        .progress .progress-bar {
+            width: 100%;
+            height: 100%;
+            background: none;
+            border-width: 12px;
+            border-style: solid;
+            position: absolute;
+            top: 0;
+        }
+        .progress .progress-left .progress-bar {
+            left: 100%;
+            border-top-right-radius: 80px;
+            border-bottom-right-radius: 80px;
+            border-left: 0;
+            -webkit-transform-origin: center left;
+            transform-origin: center left;
+        }
+        .progress .progress-right {
+            right: 0;
+        }
+        .progress .progress-right .progress-bar {
+            left: -100%;
+            border-top-left-radius: 80px;
+            border-bottom-left-radius: 80px;
+            border-right: 0;
+            -webkit-transform-origin: center right;
+            transform-origin: center right;
+            animation: loading-1 1.8s linear forwards;
+        }
+        .progress .progress-value {
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            font-size: 28px;
+            color: #049dff;
+            line-height:88px;
+            text-align: center;
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            font-weight: 700;
+        }
+        .progress .progress-value2 {
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            font-size: 28px;
+            color: #02bd6e;
+            line-height:88px;
+            text-align: center;
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            font-weight: 700;
+        }
+        .progress .progress-value3 {
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            font-size: 28px;
+            color: #eb5757;
+            line-height:88px;
+            text-align: center;
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            font-weight: 700;
+        }
+        .progress.blue .progress-bar {
+            border-color: #049dff;
+        }
+        .progress.blue .progress-left .progress-bar {
+            animation: loading-2 1.5s linear forwards 1.8s;
+        }
+        .progress.green .progress-bar {
+            border-color: #02bd6e;
+        }
+        .progress.green .progress-right .progress-bar {
+            animation: loading-3 1.8s linear forwards;
+        }
+        .progress.green .progress-left .progress-bar {
+            animation: none;
+        }
+        .progress.red .progress-bar {
+            border-color: #eb5757;
+        }
+        .progress.green .progress-right .progress-bar {
+            animation: loading-3 1.8s linear forwards;
+        }
+        .progress.green .progress-left .progress-bar {
+            animation: none;
+        }
+        @keyframes loading-1 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+        }
+        @keyframes loading-2 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(144deg);
+                transform: rotate(144deg);
+            }
+        }
+        @keyframes loading-3 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+            }
+        }
+        .letter-spacing-1px{
+            letter-spacing: -1px;
+        }
+        
+        .h-680px{
+            height: 680px;
+        }
+        .h-342px{
+            height: 342px;
+        }
+        .w-30{
+            width: 30%;
+        }
+        .w-72{
+            width: 72%;
+        }
+        .w-95{
+            width: 95%;
+        }
+        .fs-19{
+            font-size: 19px;
+        }
+        .fs-56{
+            font-size: 56px;
+        }
+        .fs-48{
+            font-size: 48px;
+        }
+        .fs-52{
+            font-size: 52px;
+        }
+        .fs-20{
+            font-size: 20px;
+        }
+        .faq-section {
+            width: 100%;
+        }
+
+        .faq-item {
+            background-color: white;
+            margin-bottom: 10px;
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .faq-item:hover {
+            background-color: #ddd;
+        }
+
+        .faq-content {
+            display: none;
+            padding: 15px;
+            background-color: white;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+            display: inline-block; /* Ensure SVG is treated as a block element */
+            width: 24px; /* Set size */
+            height: 24px; /* Set size */
+        }
+
+        .rotate {
+            transform: rotate(180deg);
+        }
+        .word-spacing-2{
+            word-spacing: -2px;
+        }
+        .unibox-main-image {
+            width: 76%;
+            margin-top: 0;
+            position: relative;
+            bottom: -60px;
+        }
+        .unibox-added-image-wrapper-1 {
+            background-color: var(--white);
+            border-radius: 10px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 246px;
+            padding: 16px;
+            display: flex;
+            position: absolute;
+            inset: auto 64px 112px auto;
+            box-shadow: -11px -11px 80px #05091726;
+        }
+        .like-setting {
+            top: 50%;
+            right: -83px;
+        }
+        .undefined-setting {
+            top: 42%;
+            left: -25px;
+        }
+        .Group-min-setting {
+            top: 42%;
+            right: -83px;
+        }
+        .man-setting {
+            top: 35%;
+            left: 0px;
+        }
+        .woman-setting {
+            top: 50%;
+            right: 25px;
+        }
+        .hero-main {
+            top: 20px;
+            left: 192px;
+        }
+        .hero-man {
+            top: 25%;
+            left: 13%;
+        }
+        .hero {
+            top: 29%;
+            left: 7%;
+        }
+        .hero-graf {
+            top: 11%;
+            right: 153px;
+        }
+        .hero-cash {
+            top: 14%;
+            right: 58px;
+        }
+        .community-bg{
+            background: linear-gradient(50deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 69%, rgba(37,104,234,0.9640231092436975) 84%, rgba(136,63,230,1) 91%);
+        }
+        .text-light-gray{
+            color: #0f0f0f99;
+        }
+        .hero-section {
+            margin-top: 100px;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        
+        .hero-section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            color: #6c757d;
+        }
+
+        .btn-primary {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            padding: 10px 30px;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .footer-cards {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: left;
+            width: 330px;
+        }
+
+        .img-1 {
+            position: absolute;
+            top: 110px;
+            left: 15px;
+            height: 60px;
+        }
+
+        .img-2 {
+            position: absolute;
+            top: 200px;
+            left: 160px;
+            height: 60px;
+        }
+
+        .img-3 {
+            position: absolute;
+            top: 110px;
+            right: 70px;
+            height: 60px;
+        }
+
+        .img-4 {
+            position: absolute;
+            top: 200px;
+            right: 190px;
+            height: 50px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-section {
+            margin: 20px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #a852ff;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        
+
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #a852ff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .carousel-control-next, .carousel-control-prev {top:auto !important;}
+        .customslides{margin: 0 auto;}
+        .tarrow {
+            border: 1px solid #1179fc;
+            border-radius: 50%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 52px;
+            height: 52px;
+            transition: background-color .2s;
+            display: flex;
+        }
+
+        .blue-arrow {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
+
+        .white-arrow:hover {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
+
+        .tarrow.left:hover,
+        .tarrow.right:hover {
+            background-color: #1179fc;
+        }
+
+        .dropdown-div {
+            display: none;
+            width: 80%;
+            position: absolute;
+            top: 300%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+        }
+        .pricing-point-text {
+            opacity: .75;
+            color: #0f0f0f;
+            text-align: left;
+            line-height: 140%;
+        }
+        
+        .customer-text{
+            color: #0f0f0f;
+            letter-spacing: -1px;
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 40px;
+            font-weight: 500;
+            line-height: 1.16;
+        }
+        .customer-text span{
+            color: #0f0f0fa6;
+        }
+        .customer-box{
+            position: relative;
+            top: -105px;
+        }
+        .person-name.person-designation {
+            color: var(--black-4);
+            letter-spacing: 0;
+            text-transform: none;
+            align-self: flex-start;
+        }
+        
+
+        @media screen and (max-width: 576px) {
+            .bg-img h1 {
+                width: 90%;
+                margin-bottom: 16px;
+                font-size: 35px;
+                word-spacing: -6px;
+                letter-spacing: -1px;
+            }
+            .home-hero-heading {
+                width: 90%;
+                font-size: 16px;
+            }
+            .text-28px.header-testimonial-text {
+                font-size: 16px;
+            }
+            .hero-man {
+                top: 19%;
+                left: 4%;
+            }
+            .hero {
+                top: 39%;
+                left: 2%;
+            }
+            .hero-cash {
+                top: 32%;
+                right: -6px;
+            }
+            .hero-graf {
+                top: 7%;
+                right: 0px;
+            }
+            .customer-box {
+                position: relative;
+                top: -70px;
+            }
+            .undefined-setting {
+                top: 19%;
+                left: -11px;
+            }
+            .like-setting {
+                top: 34%;
+                right: -18px;
+            }
+            .Group-min-setting {
+                top: 42%;
+                right: -24px;
+            }
+            .faq-title {
+                width: 85%;
+                font-size: 18px;
+            }
+            .hero-section-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+            }
+            .h-294px{
+                height: 294px;
+            }
+            .h-650px{
+                height: 650px;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .customer-text {
+                font-size: 24px;
+            }
+
+            /* .circling{flex-direction: column;justify-content: center;} */
+            .customslides{height: 750px; max-height: 1000px !important;}
+            .font-size-28 {font-size: 18px;}
+            .carousel-control-next {right:15px;}
+            .fs-56 {
+                font-size: 30px;
+            }
+            .fs-48 {
+                font-size: 34px;
+            }
+            .fs-14 {
+                font-size: 14px;
+            }
+            
+            .person-name {
+                font-size: 12px;
+            }
+            /* .pricingg{flex-direction: column; gap:20px;} */
+            .fs-52 {
+                font-size: 38px;
+            }
+            .foundersbox{width: 90%; margin-top: 20px;}
+            .analytics-title {
+                margin-bottom: 16px;
+                font-size: 28px;
+                letter-spacing: -1px;
+            }
+            .analytics-title {
+                margin-bottom: 16px;
+                font-size: 28px;
+                letter-spacing: -1px;
+            }
+            .analytics-title1 {
+                margin-bottom: 16px;
+                font-size: 28px;
+                letter-spacing: -1px;
+                word-spacing: -1px;
+            }
+            .analytics-title-des {
+                margin-bottom: 30px;
+                font-size: 16px;
+                letter-spacing: -1px;
+            }
+            .img-1 {
+                position: absolute;
+                top: 243px;
+                left: 15px;
+                height: 30px;
+            }
+            .img-2 {
+                position: absolute;
+                top: 310px;
+                left: 217px;
+                height: 33px;
+            }
+            .img-3 {
+                position: absolute;
+                top: 243px;
+                right: 25px;
+                height: 30px;
+            }
+            .img-4 {
+                position: absolute;
+                top: 310px;
+                right: 217px;
+                height: 33px;
+            }
+            .faq-title {
+                font-size: 24px;
+            }
+        }
+        @media screen and (min-width: 577px) and (max-width: 768px) {
+            .bg-img h1 {
+                font-size: 58px;
+            }
+            .home-hero-heading {
+                font-size: 18px;
+            }
+            .hero-man {
+                top: 23%;
+                left: 12%;
+            }
+            .hero {
+                top: 31%;
+                left: 7%;
+            }
+            .hero-graf {
+                top: 16%;
+                right: 94px;
+                animation: moveHeroManImage 1.5s ease-in-out forwards;
+            }
+            .hero-cash {
+                top: 25%;
+                right: 32px;
+            }
+            .customer-box {
+                position: relative;
+                top: -80px;
+            }
+            .undefined-setting {
+                top: 25%;
+                left: -25px;
+            }
+            .like-setting {
+                top: 50%;
+                right: -40px;
+            }
+            .analytics-title {
+                margin-bottom: 16px;
+                font-size: 28px;
+            }
+            .analytics-title-des {
+                margin-bottom: 30px;
+                font-size: 16px;
+            }
+            .foundersbox {
+                width: 100%;
+                margin-top: 20px;
+            }
+            .img-1 {
+                position: absolute;
+                top: 150px;
+                left: 48px;
+                height: 40px;
+            }
+            .img-2 {
+                position: absolute;
+                top: 231px;
+                left: 110px;
+                height: 35px;
+            }
+            .img-3 {
+                position: absolute;
+                top: 150px;
+                right: 40px;
+                height: 40px;
+            }
+            .img-4 {
+                position: absolute;
+                top: 231px;
+                right: 115px;
+                height: 35px;
+            }
+
+        }
+        @media screen and (min-width: 768px) and (max-width: 992px) {
+            .bg-img h1 {
+                width: 100%;
+                font-size: 35px;
+            }
+            .hero-graf {
+                top: 15%;
+                right: 57px;
+            }
+            .hero-cash {
+                top: 22%;
+                right: 30px;
+            }
+            .hero-man {
+                top: 26%;
+                left: 12%;
+            }
+            .hero {
+                top: 32%;
+                left: 7%;
+            }
+            .h-910px {
+                height: 910px;
+            }
+            .h-460px {
+                height: 460px;
+            }
+            .bottom-fade {
+                position: relative;
+            }
+
+            .bottom-fade::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 30%; 
+                background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+                pointer-events: none; 
+            }
+        }
+        @media screen and (min-width: 992px) {
+            .d-lg-none{
+                display: none !important;
+            }
+            .navbar-expand-lg .navbar-collapse {margin-left: 10%;}
+            .customslides {max-width: 1310px !important;margin: 0 auto;}
+        }
+
+        h1, p,h4 {
+      opacity: 0;
+      animation: moveUp 1.5s ease-out forwards;
+    }
+
+   .heroheading {
+      animation-delay: 0.5s; /* Starts after 0.5s */
+    }
+
+    .heropara  {
+      animation-delay: 1s; /* Starts after 1s */
+    }
+     .customer-text  {
+      animation-delay: 0.5s; /* Starts after 1s */
+    }
+
+    @keyframes moveUp {
+      0% {
+        transform: translateY(20px); /* Start slightly below */
+        opacity: 0; /* Invisible */
+      }
+      100% {
+        transform: translateY(0); /* Ends at original position */
+        opacity: 1; /* Fully visible */
+      }
+    }
+    /* Keyframe for Fade In and Slide Up */
+@keyframes fadeInSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(100%); /* Start off-screen at the bottom */
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(0); /* Slide to its final position */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Stay in the final position */
+    }
+}
+
+/* Apply the animation to the hero-main image */
+.hero-main {
+    animation: fadeInSlideUp 2s ease-out forwards; /* Animate from bottom to top */
+}
+
+/* Animation for hero-man image (from left) */
+@keyframes moveHeroManImage {
+    0% {
+        transform: translateX(-100%); /* Start off-screen to the left */
+    }
+    100% {
+        transform: translateX(0); /* End at its original position */
+    }
+}
+
+/* Animation for hero image (from left) */
+@keyframes moveHeroImage {
+    0% {
+        transform: translateX(-100%); /* Start off-screen to the left */
+    }
+    100% {
+        transform: translateX(0); /* End at its original position */
+    }
+}
+
+/* Apply animations to hero-man image */
+.hero-man img {
+    animation: moveHeroManImage 1.5s ease-in-out forwards; /* Animate hero-man image */
+}
+
+/* Apply animations to hero image */
+.hero img {
+    animation: moveHeroImage 2s ease-in-out forwards; /* Animate hero image with slight delay */
+}
+
+/* Animation for hero-man image (from right) */
+@keyframes moveHeroManImageRight {
+    0% {
+        transform: translateX(100%); /* Start off-screen to the right */
+    }
+    100% {
+        transform: translateX(0); /* End at its original position */
+    }
+}
+
+/* Animation for hero image (from right) */
+@keyframes moveHeroImageRight {
+    0% {
+        transform: translateX(100%); /* Start off-screen to the right */
+    }
+    100% {
+        transform: translateX(0); /* End at its original position */
+    }
+}
+
+/* Apply animations to images */
+.hero-graf img {
+    animation: moveHeroManImageRight 1.5s ease-in-out forwards; /* Animate hero-man image from right */
+}
+
+.hero-cash img {
+    animation: moveHeroImageRight 2s ease-in-out forwards; /* Animate hero image from right with slight delay */
+}
+
+
+
+    </style>
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="images/logo.svg" alt="logo" class="w-100"></a>
+            <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item" id="products-anchor">
+                        <a class="nav-link text-white fw-medium" aria-current="page" href="#">Products
+                            <svg class="icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.375 6.75L9 12.375L14.625 6.75" stroke="currentColor" stroke-width="1.60714" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        </a>
+                    </li>
+                    <div class="dropdown-div bg-light mt-5 rounded z-1" id="products-dropdown">
+                        <!-- Products dropdown content -->
+                        <div class="row">
+                            <div class="col-md-5 col-sm-12">
+                                <div class="row justify-content-between p-2">
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.91016 10.9092C12.1193 10.9092 13.9102 9.11832 13.9102 6.90918C13.9102 4.70004 12.1193 2.90918 9.91016 2.90918C7.70102 2.90918 5.91016 4.70004 5.91016 6.90918C5.91016 9.11832 7.70102 10.9092 9.91016 10.9092ZM1.91016 15.4092C1.91016 14.0285 3.02944 12.9092 4.41016 12.9092H10.7851C10.543 13.529 10.4102 14.2036 10.4102 14.9092C10.4102 16.7693 11.3336 18.4138 12.7471 19.4092H10.4102C8.8686 19.4092 7.53071 20.2812 6.8629 21.5589C4.94757 21.0666 3.72112 20.1073 2.96425 19.0193C1.91015 17.504 1.91016 15.9348 1.91016 15.66V15.4092ZM24.9574 21.5589C26.8727 21.0666 28.0992 20.1073 28.8561 19.0193C29.9102 17.504 29.9102 15.934 29.9102 15.6592V15.4092C29.9102 14.0285 28.7909 12.9092 27.4102 12.9092H21.0352C21.2773 13.529 21.4102 14.2036 21.4102 14.9092C21.4102 16.7693 20.4867 18.4138 19.0732 19.4092H21.4102C22.9517 19.4092 24.2896 20.2812 24.9574 21.5589ZM25.9102 6.90918C25.9102 9.11832 24.1193 10.9092 21.9102 10.9092C19.701 10.9092 17.9102 9.11832 17.9102 6.90918C17.9102 4.70004 19.701 2.90918 21.9102 2.90918C24.1193 2.90918 25.9102 4.70004 25.9102 6.90918ZM7.91016 23.4092C7.91016 22.0285 9.02945 20.9092 10.4102 20.9092H21.4102C22.7909 20.9092 23.9102 22.0285 23.9102 23.4092V23.6592C23.9102 23.934 23.9102 25.504 22.8561 27.0193C21.7564 28.6001 19.6653 29.9092 15.9102 29.9092C12.1551 29.9092 10.064 28.6001 8.96425 27.0193C7.91015 25.504 7.91016 23.9348 7.91016 23.66V23.4092ZM15.9102 18.9092C18.1193 18.9092 19.9102 17.1183 19.9102 14.9092C19.9102 12.7 18.1193 10.9092 15.9102 10.9092C13.701 10.9092 11.9102 12.7 11.9102 14.9092C11.9102 17.1183 13.701 18.9092 15.9102 18.9092Z" fill="#1179FC"></path>
+                                            </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2">Outreach</p>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M23.4128 16.082C27.4628 16.082 30.7461 19.3653 30.7461 23.4154C30.7461 27.4655 27.4628 30.7487 23.4128 30.7487C19.3627 30.7487 16.0794 27.4655 16.0794 23.4154C16.0794 19.3653 19.3627 16.082 23.4128 16.082ZM23.4128 18.7477L23.2929 18.7584C23.0208 18.8078 22.8062 19.0224 22.7568 19.2945L22.7461 19.4143L22.7456 22.7477L19.4096 22.7487L19.2898 22.7594C19.0177 22.8088 18.8031 23.0234 18.7537 23.2955L18.743 23.4154L18.7537 23.5352C18.8031 23.8073 19.0177 24.0219 19.2898 24.0713L19.4096 24.082L22.747 24.081L22.7476 27.42L22.7583 27.5398C22.8077 27.812 23.0223 28.0265 23.2944 28.0759L23.4142 28.0867L23.5341 28.0759C23.8062 28.0265 24.0208 27.812 24.0702 27.5398L24.0809 27.42L24.0803 24.081L27.4188 24.082L27.5387 24.0713C27.8108 24.0219 28.0254 23.8073 28.0748 23.5352L28.0855 23.4154L28.0748 23.2955C28.0254 23.0234 27.8108 22.8088 27.5387 22.7594L27.4188 22.7487L24.079 22.7477L24.0794 19.4143L24.0687 19.2945C24.0193 19.0224 23.8047 18.8078 23.5326 18.7584L23.4128 18.7477ZM19.0848 13.4154C20.1975 13.4154 21.1687 14.0212 21.6867 14.9209C17.7265 15.7216 14.7461 19.2204 14.7461 23.4154C14.7461 25.1342 15.2465 26.7362 16.1095 28.0836L16.0834 28.082C12.7689 28.082 10.082 25.3951 10.082 22.0806V16.4154C10.082 14.7585 11.4251 13.4154 13.082 13.4154H19.0848ZM9.9547 13.4157C9.26997 14.1294 8.82717 15.077 8.75813 16.1267L8.74866 16.4154V22.0806C8.74866 23.2095 9.00368 24.2788 9.45925 25.2341C9.02046 25.3528 8.55808 25.4154 8.08108 25.4154C5.13465 25.4154 2.74609 23.0268 2.74609 20.0804V16.4154C2.74609 14.8275 3.97964 13.5278 5.54069 13.4223L5.74609 13.4154L9.9547 13.4157ZM26.4128 13.4154C28.0696 13.4154 29.4128 14.7585 29.4128 16.4154L29.4139 17.1625C27.8566 15.6675 25.742 14.7487 23.4128 14.7487L23.0885 14.7547C22.8812 14.2549 22.5819 13.8012 22.2121 13.4157L26.4128 13.4154ZM24.7461 5.41536C26.587 5.41536 28.0794 6.90775 28.0794 8.7487C28.0794 10.5896 26.587 12.082 24.7461 12.082C22.9051 12.082 21.4128 10.5896 21.4128 8.7487C21.4128 6.90775 22.9051 5.41536 24.7461 5.41536ZM16.0794 4.08203C18.2886 4.08203 20.0794 5.87289 20.0794 8.08203C20.0794 10.2912 18.2886 12.082 16.0794 12.082C13.8703 12.082 12.0794 10.2912 12.0794 8.08203C12.0794 5.87289 13.8703 4.08203 16.0794 4.08203ZM7.41276 5.41536C9.25371 5.41536 10.7461 6.90775 10.7461 8.7487C10.7461 10.5896 9.25371 12.082 7.41276 12.082C5.57181 12.082 4.07943 10.5896 4.07943 8.7487C4.07943 6.90775 5.57181 5.41536 7.41276 5.41536Z" fill="#02BD6E"></path>
+                                            </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Lead Database</p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between p-2">
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M30.75 8.74837C30.75 12.7985 27.4668 16.0817 23.4167 16.0817C19.3666 16.0817 16.0833 12.7985 16.0833 8.74837C16.0833 4.69828 19.3666 1.41504 23.4167 1.41504C27.4668 1.41504 30.75 4.69828 30.75 8.74837ZM27.8881 5.6103C27.6277 5.34995 27.2056 5.34995 26.9453 5.6103L22.0833 10.4722L19.8881 8.27697C19.6277 8.01662 19.2056 8.01662 18.9453 8.27697C18.6849 8.53732 18.6849 8.95943 18.9453 9.21978L21.6119 11.8864C21.8723 12.1468 22.2944 12.1468 22.5547 11.8864L27.8881 6.55311C28.1484 6.29276 28.1484 5.87065 27.8881 5.6103ZM23.4167 17.415C25.7453 17.415 27.8595 16.4966 29.4167 15.0023V22.415C29.4167 24.7257 27.6081 26.614 25.3292 26.7415L25.0833 26.7484H7.08333C4.77262 26.7484 2.88434 24.9398 2.75686 22.6609L2.75 22.415V11.559L15.6193 18.3009C15.9099 18.4531 16.2567 18.4531 16.5473 18.3009L19.7698 16.6127C20.8783 17.1276 22.1139 17.415 23.4167 17.415ZM7.08333 5.41504H15.4142C14.9863 6.44116 14.75 7.56717 14.75 8.74837C14.75 11.4051 15.9454 13.7826 17.8277 15.3724L16.0833 16.2862L2.77159 9.3131C2.98182 7.20532 4.70242 5.5423 6.83545 5.42201L7.08333 5.41504Z" fill="#EB5757"></path>
+                                            </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Deliverability</p>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10.75 14.7487C13.6955 14.7487 16.0833 12.3609 16.0833 9.41536C16.0833 6.46985 13.6955 4.08203 10.75 4.08203C7.80448 4.08203 5.41667 6.46985 5.41667 9.41536C5.41667 12.3609 7.80448 14.7487 10.75 14.7487ZM22.75 14.7487C24.9591 14.7487 26.75 12.9578 26.75 10.7487C26.75 8.53956 24.9591 6.7487 22.75 6.7487C20.5409 6.7487 18.75 8.53956 18.75 10.7487C18.75 12.9578 20.5409 14.7487 22.75 14.7487ZM5.75 17.4154C4.09315 17.4154 2.75 18.7585 2.75 20.4154V20.7487C2.75 20.7487 2.75 26.7487 10.75 26.7487C12.6031 26.7487 14.027 26.4267 15.121 25.932C14.8797 25.1356 14.75 24.2906 14.75 23.4154C14.75 21.2062 15.5766 19.1901 16.9373 17.6595C16.5732 17.5024 16.1717 17.4154 15.75 17.4154H5.75ZM19.1196 18.7165C19.5393 20.1702 18.6668 21.6814 17.198 22.0448L16.4191 22.2375C16.3592 22.6211 16.3281 23.0147 16.3281 23.4158C16.3281 23.8353 16.3622 24.2467 16.4276 24.647L17.1469 24.8202C18.6302 25.1774 19.512 26.7041 19.0802 28.1675L18.8318 29.0092C19.4173 29.5234 20.0846 29.9409 20.8106 30.238L21.4683 29.5463C22.5198 28.4406 24.2828 28.4409 25.3338 29.547L25.9988 30.2467C26.7235 29.953 27.3902 29.5394 27.9758 29.0295L27.7118 28.1149C27.2921 26.6612 28.1646 25.15 29.6334 24.7866L30.4117 24.5941C30.4716 24.2105 30.5027 23.8169 30.5027 23.4158C30.5027 22.9961 30.4686 22.5847 30.4032 22.1843L29.6846 22.0112C28.2012 21.654 27.3195 20.1273 27.7513 18.6639L27.9995 17.8228C27.414 17.3085 26.7467 16.8908 26.0206 16.5937L25.3631 17.2851C24.3117 18.3908 22.5487 18.3905 21.4976 17.2845L20.8326 16.5846C20.1078 16.8782 19.4412 17.2918 18.8555 17.8016L19.1196 18.7165ZM23.4154 25.4158C22.3479 25.4158 21.4825 24.5203 21.4825 23.4158C21.4825 22.3112 22.3479 21.4158 23.4154 21.4158C24.4829 21.4158 25.3483 22.3112 25.3483 23.4158C25.3483 24.5203 24.4829 25.4158 23.4154 25.4158Z" fill="#DD83FC"></path>
+                                            </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">CRM</p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between p-2">
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20.131 22.0013C20.0779 22.2817 20.0213 22.5563 19.9616 22.8247C18.4432 23.2841 17.3372 24.6935 17.3372 26.3628V26.5001C17.3372 27.1196 17.4498 27.7395 17.6828 28.3283C17.1451 28.9757 16.5737 29.3322 16.0034 29.3322C14.4074 29.3322 12.8026 26.5403 11.9531 22.3939L11.8757 22.0013H20.131ZM20.0039 19.3335C20.0039 18.4615 20.243 17.6454 20.6593 16.9472C20.6678 16.6347 20.6721 16.3191 20.6721 16.0008C20.6721 15.0865 20.6364 14.1947 20.5694 13.3338H11.4374L11.393 13.9851C11.3547 14.642 11.3346 15.3151 11.3346 16.0008C11.3346 17.3969 11.4179 18.7404 11.5686 20.0014H20.0514C20.0201 19.7833 20.0039 19.5603 20.0039 19.3335ZM24.6706 14.6668C26.8226 14.6668 28.6344 16.1235 29.1738 18.1046C29.2824 17.4193 29.3388 16.7167 29.3388 16.0008C29.3388 15.0874 29.2469 14.1955 29.072 13.3338L22.5787 13.3346L22.6303 14.2091C22.6445 14.5102 22.6551 14.8139 22.6621 15.1199C23.2704 14.8294 23.9515 14.6668 24.6706 14.6668ZM4.09111 22.0015L9.83196 22.0012C10.3183 24.7775 11.1427 27.1395 12.2215 28.7925C8.80443 27.7833 5.95955 25.4436 4.28624 22.3734L4.09111 22.0015ZM2.93472 13.3338L9.42809 13.3346C9.36643 14.2012 9.33464 15.0922 9.33464 16.0008C9.33464 17.1066 9.38172 18.1863 9.47243 19.2277L9.54859 20.0013H3.27842C2.88179 18.7384 2.66797 17.3946 2.66797 16.0008C2.66797 15.0874 2.7598 14.1955 2.93472 13.3338ZM19.9291 3.43625L19.7852 3.20928C23.8096 4.39725 27.0417 7.43273 28.4993 11.3337L22.3781 11.3341C21.9574 8.11153 21.1028 5.34396 19.9291 3.43625ZM12.0591 3.25837L12.2214 3.20933C11.0471 5.00868 10.1743 7.64816 9.71074 10.7477L9.62865 11.3341L3.50747 11.3337C4.94542 7.48536 8.11022 4.47931 12.0591 3.25837ZM16.0034 2.66943C17.7618 2.66943 19.5308 6.05843 20.2887 10.914L20.3511 11.3338H11.6556C12.3748 6.25486 14.1947 2.66943 16.0034 2.66943ZM28.0039 19.3335C28.0039 21.1744 26.5115 22.6668 24.6706 22.6668C22.8296 22.6668 21.3372 21.1744 21.3372 19.3335C21.3372 17.4925 22.8296 16.0001 24.6706 16.0001C26.5115 16.0001 28.0039 17.4925 28.0039 19.3335ZM30.6706 26.5001C30.6706 28.5755 28.9563 30.6668 24.6706 30.6668C20.3849 30.6668 18.6706 28.5833 18.6706 26.5001V26.3628C18.6706 25.0574 19.7288 24.0001 21.0342 24.0001H28.3069C29.6123 24.0001 30.6706 25.0574 30.6706 26.3628V26.5001Z" fill="#EB5757"></path>
+                                            </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Website Visitors</p>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M2.28906 8.857C2.28906 6.49007 4.20784 4.57129 6.57478 4.57129H25.428C27.795 4.57129 29.7138 6.49007 29.7138 8.857V8.86902L15.9984 15.894L2.28906 8.87263V8.857ZM2.28906 10.7987V21.9999C2.28906 24.3668 4.20785 26.2856 6.57478 26.2856H25.428C27.795 26.2856 29.7138 24.3668 29.7138 21.9999V10.7951L16.3892 17.6199C16.1439 17.7456 15.8531 17.7456 15.6077 17.6199L2.28906 10.7987Z" fill="#1179FC"></path>
+                                            </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Email Accounts</p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between p-2">
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4 7.6665C4 7.11422 4.44772 6.6665 5 6.6665C8.55121 6.6665 12.0106 5.40854 15.4 2.8665C15.7556 2.59984 16.2444 2.59984 16.6 2.8665C19.9894 5.40854 23.4488 6.6665 27 6.6665C27.5523 6.6665 28 7.11422 28 7.6665V14.6665C28 15.1173 27.982 15.56 27.946 15.9946C26.6102 15.1533 25.0286 14.6665 23.3333 14.6665C18.5469 14.6665 14.6667 18.5467 14.6667 23.3332C14.6667 25.5345 15.4874 27.5442 16.8396 29.0729C16.6835 29.1373 16.5258 29.2008 16.3665 29.2636C16.131 29.3564 15.869 29.3564 15.6335 29.2636C7.94342 26.2342 4 21.3348 4 14.6665V7.6665ZM30.6667 23.3332C30.6667 19.2831 27.3834 15.9998 23.3333 15.9998C19.2832 15.9998 16 19.2831 16 23.3332C16 27.3833 19.2832 30.6665 23.3333 30.6665C27.3834 30.6665 30.6667 27.3833 30.6667 23.3332ZM27.8047 20.1951C28.0651 20.4555 28.0651 20.8776 27.8047 21.1379L22.4714 26.4712C22.2111 26.7316 21.7889 26.7316 21.5286 26.4712L18.8619 23.8046C18.6016 23.5442 18.6016 23.1221 18.8619 22.8618C19.1223 22.6014 19.5444 22.6014 19.8047 22.8618L22 25.057L26.8619 20.1951C27.1223 19.9347 27.5444 19.9347 27.8047 20.1951Z" fill="#02BD6E"></path>
+                                            </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Verification</p>
+                                    </div>
+                                
+                                </div>
+                            </div> 
+                            <div class="col-md-7 col-sm-12 d-md-flex align-items-center justify-content-between herotextt">
+                                <div class="col-md-7 col-sm-12 mb-2">
+                                    <h1 class="fw-bold heroheading">Find & Close Your Ideal Clients</h1>
+                                    <p class="fs-5 heropara">Instantly turns leads into clients with Automated Outreach,
+                                        Deliverability Network, Lead Database & CRM</p>
+                                    <button class="btn btn-outline-primary rounded-pill px-4 py-2 fs-4  mt-3">Book A
+                                        Demo</button>
+                                </div>
+                                <div class="col-md-4 col-sm-12 d-flex justify-content-center align-items-center ms-2">
+                                    <img src="images/map.svg" alt="map" class="w-100">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                
+                    <li class="nav-item" id="usecases-anchor">
+                        <a class="nav-link text-white fw-medium" aria-current="page" href="#">Use Cases
+                            <svg class="icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.375 6.75L9 12.375L14.625 6.75" stroke="currentColor" stroke-width="1.60714" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        </a>
+                    </li>
+                    <div class="dropdown-div bg-light mt-5 rounded z-1" id="usecases-dropdown">
+                        <!-- Use Cases dropdown content -->
+                        <div class="row">
+                            <div class="col-md-5 col-sm-12">
+                                <div class="row justify-content-between p-2">
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M19.6733 13.3333C20.7303 13.3333 21.6232 14.0362 21.91 15H21.0013C18.9763 15 17.3346 16.6416 17.3346 18.6667V18.7333C15.8131 19.0422 14.668 20.3874 14.668 22V27.8505C11.9972 27.2427 10.0039 24.8534 10.0039 21.9986V15.6667C10.0039 14.378 11.0485 13.3333 12.3372 13.3333H19.6733ZM25.668 15C27.6878 15 29.3262 16.6331 29.3346 18.6509V15.6667C29.3346 14.378 28.29 13.3333 27.0013 13.3333L22.5009 13.3321C22.8905 13.8035 23.1645 14.3739 23.2795 15H25.668ZM9.50968 13.3321C9.04374 13.8958 8.74311 14.6011 8.68206 15.3739L8.67054 15.6667V21.9986C8.67054 23.1275 8.92556 24.1968 9.38113 25.152C8.94233 25.2707 8.47996 25.3333 8.00296 25.3333C5.05652 25.3333 2.66797 22.9448 2.66797 19.9983V15.6667C2.66797 14.4424 3.61078 13.4384 4.80993 13.3411L5.0013 13.3333L9.50968 13.3321ZM16.0013 4C18.2104 4 20.0013 5.79086 20.0013 8C20.0013 10.2091 18.2104 12 16.0013 12C13.7922 12 12.0013 10.2091 12.0013 8C12.0013 5.79086 13.7922 4 16.0013 4ZM24.668 5.33333C26.5089 5.33333 28.0013 6.82572 28.0013 8.66667C28.0013 10.5076 26.5089 12 24.668 12C22.827 12 21.3346 10.5076 21.3346 8.66667C21.3346 6.82572 22.827 5.33333 24.668 5.33333ZM7.33464 5.33333C9.17558 5.33333 10.668 6.82572 10.668 8.66667C10.668 10.5076 9.17558 12 7.33464 12C5.49369 12 4.0013 10.5076 4.0013 8.66667C4.0013 6.82572 5.49369 5.33333 7.33464 5.33333ZM18.668 20H18.0013C16.8967 20 16.0013 20.8954 16.0013 22V24H19.3346V23.6667C19.3346 23.1144 19.7824 22.6667 20.3346 22.6667C20.8869 22.6667 21.3346 23.1144 21.3346 23.6667V24H25.3346V23.6667C25.3346 23.1144 25.7824 22.6667 26.3346 22.6667C26.8869 22.6667 27.3346 23.1144 27.3346 23.6667V24H30.668V22C30.668 20.8954 29.7725 20 28.668 20H28.0013V18.6667C28.0013 17.378 26.9567 16.3333 25.668 16.3333H21.0013C19.7126 16.3333 18.668 17.378 18.668 18.6667V20ZM20.668 18.6667C20.668 18.4826 20.8172 18.3333 21.0013 18.3333H25.668C25.8521 18.3333 26.0013 18.4826 26.0013 18.6667V20H20.668V18.6667ZM16.0013 28.6667V26H19.3346V27C19.3346 27.5523 19.7824 28 20.3346 28C20.8869 28 21.3346 27.5523 21.3346 27V26H25.3346V27C25.3346 27.5523 25.7824 28 26.3346 28C26.8869 28 27.3346 27.5523 27.3346 27V26H30.668V28.6667C30.668 29.7712 29.7725 30.6667 28.668 30.6667H18.0013C16.8967 30.6667 16.0013 29.7712 16.0013 28.6667Z" fill="#1179FC"></path>
+                                        </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2">Agencies</p>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.33464 8.16659C5.33464 6.60178 6.60316 5.33325 8.16797 5.33325H23.8346C25.3994 5.33325 26.668 6.60178 26.668 8.16659V13.7823C26.0618 13.4944 25.3837 13.3333 24.668 13.3333C22.0906 13.3333 20.0013 15.4226 20.0013 17.9999C20.0013 19.3057 20.5376 20.4862 21.402 21.3333H8.16797C6.60316 21.3333 5.33464 20.0647 5.33464 18.4999V8.16659ZM17.3346 24.665C17.3346 24.3171 17.3879 23.9817 17.4868 23.6666H3.5013C3.04106 23.6666 2.66797 24.0397 2.66797 24.4999C2.66797 24.9602 3.04106 25.3333 3.5013 25.3333H17.3453C17.3382 25.2229 17.3346 25.1117 17.3346 24.9999V24.665ZM28.0013 17.9999C28.0013 19.8409 26.5089 21.3333 24.668 21.3333C22.827 21.3333 21.3346 19.8409 21.3346 17.9999C21.3346 16.159 22.827 14.6666 24.668 14.6666C26.5089 14.6666 28.0013 16.159 28.0013 17.9999ZM30.668 24.9999C30.668 27.3333 28.568 29.3333 24.668 29.3333C20.768 29.3333 18.668 27.3333 18.668 24.9999V24.665C18.668 23.5605 19.5634 22.6666 20.668 22.6666H28.668C29.7725 22.6666 30.668 23.5605 30.668 24.665V24.9999Z" fill="#02BD6E"></path>
+                                        </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2">Founders</p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between p-2">
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M20.7236 5.98813C20.1927 5.8359 19.8858 5.28212 20.038 4.75123L20.8649 1.86744C21.0171 1.33655 21.5709 1.02959 22.1018 1.18182C22.6327 1.33405 22.9397 1.88783 22.7874 2.41872L21.9605 5.3025C21.8083 5.83339 21.2545 6.14036 20.7236 5.98813ZM28.7064 3.29284C29.0969 3.68337 29.0969 4.31653 28.7064 4.70706L25.7064 7.70706C25.3158 8.09758 24.6827 8.09758 24.2922 7.70706C23.9016 7.31653 23.9016 6.68337 24.2922 6.29284L27.2922 3.29284C27.6827 2.90232 28.3158 2.90232 28.7064 3.29284ZM21.5917 22.4183L26.3411 20.0436C28.1726 19.1279 28.5687 16.6869 27.1208 15.239L16.7609 4.87912C15.313 3.43119 12.872 3.82731 11.9563 5.6588L3.3168 22.9378C2.73932 24.0928 2.96568 25.4877 3.87876 26.4008L5.59913 28.1211C6.51221 29.0342 7.90712 29.2606 9.06209 28.6831L11.779 27.3246C12.7402 28.9273 14.4945 29.9999 16.4993 29.9999C19.5368 29.9999 21.9993 27.5375 21.9993 24.4999C21.9993 23.7633 21.8544 23.0604 21.5917 22.4183ZM19.7943 23.317C19.927 23.6865 19.9993 24.0848 19.9993 24.4999C19.9993 26.4329 18.4323 27.9999 16.4993 27.9999C15.2778 27.9999 14.2025 27.3743 13.5764 26.4259L19.7943 23.317ZM26.9993 10.002C26.447 10.002 25.9993 10.4497 25.9993 11.002C25.9993 11.5542 26.447 12.002 26.9993 12.002H29.9993C30.5515 12.002 30.9993 11.5542 30.9993 11.002C30.9993 10.4497 30.5515 10.002 29.9993 10.002H26.9993Z" fill="#DD83FC"></path>
+                                        </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2">Marketing</p>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10.8566 14.8572C13.6969 14.8572 15.9994 12.5547 15.9994 9.71439C15.9994 6.87407 13.6969 4.57153 10.8566 4.57153C8.01626 4.57153 5.71373 6.87407 5.71373 9.71439C5.71373 12.5547 8.01626 14.8572 10.8566 14.8572ZM2.28516 19.7144C2.28516 18.2942 3.43642 17.143 4.85658 17.143H16.8566C17.0828 17.143 17.3022 17.1722 17.5112 17.227C15.8756 18.7879 14.8566 20.9893 14.8566 23.4287C14.8566 24.1881 14.9554 24.9245 15.1407 25.6257C14.0271 26.0307 12.624 26.2858 10.8566 26.2858C2.28516 26.2858 2.28516 20.2858 2.28516 20.2858V19.7144ZM19.1951 19.0841C19.5548 20.3301 18.807 21.6254 17.548 21.9369L16.3783 22.2263C16.317 22.6177 16.2852 23.0195 16.2852 23.429C16.2852 23.8574 16.32 24.2773 16.387 24.6859L17.5019 24.9544C18.7734 25.2606 19.5292 26.5692 19.159 27.8235L18.7889 29.0777C19.381 29.6041 20.0567 30.0316 20.7926 30.3356L21.7558 29.3227C22.657 28.375 24.1681 28.3753 25.069 29.3233L26.0401 30.3452C26.7746 30.0449 27.4496 29.6217 28.0419 29.1L27.6592 27.7746C27.2995 26.5286 28.0474 25.2332 29.3063 24.9218L30.4777 24.632C30.539 24.2404 30.5709 23.8386 30.5709 23.429C30.5709 23.001 30.5361 22.5814 30.4692 22.1732L29.3524 21.9042C28.081 21.598 27.3252 20.2895 27.6953 19.0351L28.0659 17.7792C27.474 17.2531 26.7983 16.8259 26.0627 16.5221L25.0986 17.5359C24.1974 18.4836 22.6862 18.4834 21.7853 17.5354L20.8142 16.5135C20.0798 16.814 19.4048 17.2373 18.8126 17.7593L19.1951 19.0841ZM23.428 25.1433C22.4812 25.1433 21.7137 24.3758 21.7137 23.429C21.7137 22.4822 22.4812 21.7147 23.428 21.7147C24.3748 21.7147 25.1423 22.4822 25.1423 23.429C25.1423 24.3758 24.3748 25.1433 23.428 25.1433Z" fill="#1179FC"></path>
+                                        </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Freelancers</p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between p-2">
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 8C12 5.79086 13.7909 4 16 4C18.2091 4 20 5.79086 20 8C20 10.2091 18.2091 12 16 12C13.7909 12 12 10.2091 12 8ZM8.5 16C8.5 14.8475 8.93328 13.7961 9.64584 13H6C4.34315 13 3 14.3431 3 16V19.5C3 20.0523 3.44772 20.5 4 20.5H8.5V16ZM23.5 16C23.5 14.8475 23.0667 13.7961 22.3542 13H26C27.6569 13 29 14.3431 29 16V19.5C29 20.0523 28.5523 20.5 28 20.5H23.5V16ZM3 23.5C3 22.6716 3.67157 22 4.5 22H27.5C28.3284 22 29 22.6716 29 23.5C29 25.9853 26.9853 28 24.5 28H7.5C5.01472 28 3 25.9853 3 23.5ZM4 8.5C4 6.567 5.567 5 7.5 5C9.433 5 11 6.567 11 8.5C11 10.433 9.433 12 7.5 12C5.567 12 4 10.433 4 8.5ZM21 8.5C21 6.567 22.567 5 24.5 5C26.433 5 28 6.567 28 8.5C28 10.433 26.433 12 24.5 12C22.567 12 21 10.433 21 8.5ZM10 16C10 14.3431 11.3431 13 13 13H19C20.6569 13 22 14.3431 22 16V20.5H10V16Z" fill="#EB5757"></path>
+                                        </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Sales</p>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M2.66797 9.00008C2.66797 7.71142 3.71264 6.66675 5.0013 6.66675H23.0013C24.29 6.66675 25.3346 7.71142 25.3346 9.00008V14.8987C24.6926 14.747 24.023 14.6667 23.3346 14.6667C18.7725 14.6667 15.0336 18.1918 14.6932 22.6667H5.0013C3.71264 22.6667 2.66797 21.6221 2.66797 20.3334V9.00008ZM5.86976 24.6667H14.7699C14.8776 25.3644 15.0685 26.0345 15.3322 26.6667H9.33464C7.85407 26.6667 6.56138 25.8624 5.86976 24.6667ZM27.3346 15.643C28.0693 16.0259 28.7423 16.5111 29.3346 17.0795V13.3334C29.3346 11.8528 28.5302 10.5602 27.3346 9.86854V15.643ZM6.66797 9.66675C6.66797 10.219 6.22025 10.6667 5.66797 10.6667H4.33464V12.6667H5.66797C7.32482 12.6667 8.66797 11.3236 8.66797 9.66675V8.33341H6.66797V9.66675ZM14.0013 18.0001C15.6582 18.0001 17.0013 16.6569 17.0013 15.0001C17.0013 13.3432 15.6582 12.0001 14.0013 12.0001C12.3444 12.0001 11.0013 13.3432 11.0013 15.0001C11.0013 16.6569 12.3444 18.0001 14.0013 18.0001ZM5.66797 18.6667C6.22025 18.6667 6.66797 19.1145 6.66797 19.6667V21.0001H8.66797V19.6667C8.66797 18.0099 7.32482 16.6667 5.66797 16.6667H4.33464V18.6667H5.66797ZM22.3346 10.6667C21.7824 10.6667 21.3346 10.219 21.3346 9.66675V8.33341H19.3346V9.66675C19.3346 11.3236 20.6778 12.6667 22.3346 12.6667H23.668V10.6667H22.3346ZM19.0389 18.6342C19.4586 20.0879 18.5861 21.5992 17.1173 21.9625L16.3384 22.1552C16.2785 22.5388 16.2474 22.9324 16.2474 23.3335C16.2474 23.7531 16.2815 24.1644 16.3469 24.5647L17.0661 24.7379C18.5495 25.0952 19.4313 26.6218 18.9994 28.0852L18.7511 28.9269C19.3366 29.4411 20.0039 29.8587 20.7299 30.1557L21.3876 29.464C22.439 28.3584 24.2021 28.3587 25.2531 29.4647L25.918 30.1644C26.6428 29.8707 27.3094 29.4571 27.8951 28.9472L27.6311 28.0327C27.2114 26.579 28.0839 25.0677 29.5527 24.7044L30.331 24.5118C30.3908 24.1282 30.422 23.7346 30.422 23.3335C30.422 22.9138 30.3879 22.5024 30.3225 22.102L29.6039 21.9289C28.1205 21.5717 27.2387 20.045 27.6706 18.5817L27.9188 17.7405C27.3333 17.2262 26.6659 16.8086 25.9398 16.5115L25.2824 17.2029C24.231 18.3085 22.4679 18.3082 21.4169 17.2022L20.7518 16.5024C20.0271 16.796 19.3605 17.2095 18.7748 17.7193L19.0389 18.6342ZM23.3347 25.3335C22.2672 25.3335 21.4018 24.4381 21.4018 23.3335C21.4018 22.2289 22.2672 21.3335 23.3347 21.3335C24.4022 21.3335 25.2676 22.2289 25.2676 23.3335C25.2676 24.4381 24.4022 25.3335 23.3347 25.3335Z" fill="#DD83FC"></path>
+                                        </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Sales Development</p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between p-2">
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.33203 5.50008C5.33203 3.93527 6.60056 2.66675 8.16536 2.66675H18.4987C20.0635 2.66675 21.332 3.93527 21.332 5.50008V12.6667H23.832C25.3968 12.6667 26.6654 13.9353 26.6654 15.5001V28.5001C26.6654 28.9603 26.2923 29.3334 25.832 29.3334H22.6654V24.8334C22.6654 24.005 21.9938 23.3334 21.1654 23.3334H10.832C10.0036 23.3334 9.33203 24.005 9.33203 24.8334V29.3334H6.16536C5.70513 29.3334 5.33203 28.9603 5.33203 28.5001V5.50008ZM10.9987 29.3334H15.1654V25.0001H10.9987V29.3334ZM16.832 29.3334H20.9987V25.0001H16.832V29.3334ZM11.9987 9.33342C11.9987 8.59704 11.4017 8.00008 10.6654 8.00008C9.92899 8.00008 9.33203 8.59704 9.33203 9.33342C9.33203 10.0698 9.92899 10.6667 10.6654 10.6667C11.4017 10.6667 11.9987 10.0698 11.9987 9.33342ZM10.6654 15.3334C11.4017 15.3334 11.9987 14.7365 11.9987 14.0001C11.9987 13.2637 11.4017 12.6667 10.6654 12.6667C9.92899 12.6667 9.33203 13.2637 9.33203 14.0001C9.33203 14.7365 9.92899 15.3334 10.6654 15.3334ZM11.9987 18.6667C11.9987 17.9304 11.4017 17.3334 10.6654 17.3334C9.92899 17.3334 9.33203 17.9304 9.33203 18.6667C9.33203 19.4031 9.92899 20.0001 10.6654 20.0001C11.4017 20.0001 11.9987 19.4031 11.9987 18.6667ZM15.9987 10.6667C16.7351 10.6667 17.332 10.0698 17.332 9.33342C17.332 8.59704 16.7351 8.00008 15.9987 8.00008C15.2623 8.00008 14.6654 8.59704 14.6654 9.33342C14.6654 10.0698 15.2623 10.6667 15.9987 10.6667ZM17.332 14.0001C17.332 13.2637 16.7351 12.6667 15.9987 12.6667C15.2623 12.6667 14.6654 13.2637 14.6654 14.0001C14.6654 14.7365 15.2623 15.3334 15.9987 15.3334C16.7351 15.3334 17.332 14.7365 17.332 14.0001ZM15.9987 20.0001C16.7351 20.0001 17.332 19.4031 17.332 18.6667C17.332 17.9304 16.7351 17.3334 15.9987 17.3334C15.2623 17.3334 14.6654 17.9304 14.6654 18.6667C14.6654 19.4031 15.2623 20.0001 15.9987 20.0001ZM22.6654 18.6667C22.6654 17.9304 22.0684 17.3334 21.332 17.3334C20.5957 17.3334 19.9987 17.9304 19.9987 18.6667C19.9987 19.4031 20.5957 20.0001 21.332 20.0001C22.0684 20.0001 22.6654 19.4031 22.6654 18.6667Z" fill="#02BD6E"></path>
+                                            </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Enterprise</p>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M19.6733 13.3333C20.7303 13.3333 21.6232 14.0362 21.91 15H21.0013C18.9763 15 17.3346 16.6416 17.3346 18.6667V18.7333C15.8131 19.0422 14.668 20.3874 14.668 22V27.8505C11.9972 27.2427 10.0039 24.8534 10.0039 21.9986V15.6667C10.0039 14.378 11.0485 13.3333 12.3372 13.3333H19.6733ZM25.668 15C27.6878 15 29.3262 16.6331 29.3346 18.6509V15.6667C29.3346 14.378 28.29 13.3333 27.0013 13.3333L22.5009 13.3321C22.8905 13.8035 23.1645 14.3739 23.2795 15H25.668ZM9.50968 13.3321C9.04374 13.8958 8.74311 14.6011 8.68206 15.3739L8.67054 15.6667V21.9986C8.67054 23.1275 8.92556 24.1968 9.38113 25.152C8.94233 25.2707 8.47996 25.3333 8.00296 25.3333C5.05652 25.3333 2.66797 22.9448 2.66797 19.9983V15.6667C2.66797 14.4424 3.61078 13.4384 4.80993 13.3411L5.0013 13.3333L9.50968 13.3321ZM16.0013 4C18.2104 4 20.0013 5.79086 20.0013 8C20.0013 10.2091 18.2104 12 16.0013 12C13.7922 12 12.0013 10.2091 12.0013 8C12.0013 5.79086 13.7922 4 16.0013 4ZM24.668 5.33333C26.5089 5.33333 28.0013 6.82572 28.0013 8.66667C28.0013 10.5076 26.5089 12 24.668 12C22.827 12 21.3346 10.5076 21.3346 8.66667C21.3346 6.82572 22.827 5.33333 24.668 5.33333ZM7.33464 5.33333C9.17558 5.33333 10.668 6.82572 10.668 8.66667C10.668 10.5076 9.17558 12 7.33464 12C5.49369 12 4.0013 10.5076 4.0013 8.66667C4.0013 6.82572 5.49369 5.33333 7.33464 5.33333ZM18.668 20H18.0013C16.8967 20 16.0013 20.8954 16.0013 22V24H19.3346V23.6667C19.3346 23.1144 19.7824 22.6667 20.3346 22.6667C20.8869 22.6667 21.3346 23.1144 21.3346 23.6667V24H25.3346V23.6667C25.3346 23.1144 25.7824 22.6667 26.3346 22.6667C26.8869 22.6667 27.3346 23.1144 27.3346 23.6667V24H30.668V22C30.668 20.8954 29.7725 20 28.668 20H28.0013V18.6667C28.0013 17.378 26.9567 16.3333 25.668 16.3333H21.0013C19.7126 16.3333 18.668 17.378 18.668 18.6667V20ZM20.668 18.6667C20.668 18.4826 20.8172 18.3333 21.0013 18.3333H25.668C25.8521 18.3333 26.0013 18.4826 26.0013 18.6667V20H20.668V18.6667ZM16.0013 28.6667V26H19.3346V27C19.3346 27.5523 19.7824 28 20.3346 28C20.8869 28 21.3346 27.5523 21.3346 27V26H25.3346V27C25.3346 27.5523 25.7824 28 26.3346 28C26.8869 28 27.3346 27.5523 27.3346 27V26H30.668V28.6667C30.668 29.7712 29.7725 30.6667 28.668 30.6667H18.0013C16.8967 30.6667 16.0013 29.7712 16.0013 28.6667Z" fill="#1179FC"></path>
+                                        </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">VIP Service</p>
+                                    </div>
+                                
+                                </div>
+                            </div> 
+                            <div class="col-md-7 col-sm-12 d-md-flex align-items-center justify-content-between">
+                                <div class="col-md-7 col-sm-12 mb-2">
+                                    <h1 class="fw-bold">Find & Close Your Ideal Clients</h1>
+                                    <p class="fs-5">Instantly turns leads into clients with Automated Outreach,
+                                        Deliverability Network, Lead Database & CRM</p>
+                                    <button class="btn btn-outline-primary rounded-pill px-4 py-2 fs-4  mt-3">Book A
+                                        Demo</button>
+                                </div>
+                                <div class="col-md-4 col-sm-12 d-flex justify-content-center align-items-center ms-2">
+                                    <img src="images/map.svg" alt="map" class="w-100">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                
+                    <li class="nav-item" id="resources-anchor">
+                        <a class="nav-link text-white fw-medium" aria-current="page" href="#">Resources
+                            <svg class="icon" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.375 6.75L9 12.375L14.625 6.75" stroke="currentColor" stroke-width="1.60714" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        </a>
+                    </li>
+                    <li class="nav-item" id="resources-anchor">
+                        <a class="nav-link text-white fw-medium" aria-current="page" href="#">Pricing</a>
+                    </li>
+                    <div class="dropdown-div bg-light mt-5 rounded z-1" id="resources-dropdown">
+                        <!-- Resources dropdown content -->
+                        <div class="row">
+                            <div class="col-md-5 col-sm-12">
+                                <div class="row justify-content-between p-2">
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M25.1423 6.57153V23.4287C25.1423 23.7443 25.3981 24.0001 25.7137 24.0001C25.9943 24.0001 26.2276 23.798 26.2759 23.5314L26.2852 23.4287V8.0001H27.7137C28.7631 8.0001 29.6237 8.80823 29.7071 9.83607L29.7137 10.0001V23.7144C29.7137 25.695 28.1635 27.3135 26.2102 27.4228L25.9994 27.4287H5.99944C4.01883 27.4287 2.4003 25.8784 2.29104 23.9252L2.28516 23.7144V6.57153C2.28516 5.52219 3.09328 4.6616 4.12112 4.57816L4.28516 4.57153H23.1423C24.1916 4.57153 25.0522 5.37966 25.1357 6.4075L25.1423 6.57153V23.4287V6.57153ZM11.1383 14.8612H8.28516C7.23582 14.8612 6.37522 15.6693 6.29179 16.6972L6.28516 16.8612V19.7144C6.28516 20.7637 7.09328 21.6243 8.12113 21.7078L8.28516 21.7144H11.1383C12.1877 21.7144 13.0483 20.9063 13.1317 19.8784L13.1383 19.7144V16.8612C13.1383 15.8119 12.3302 14.9513 11.3024 14.8678L11.1383 14.8612ZM20.2852 20.0001H16.2852L16.1688 20.0079C15.7505 20.0647 15.428 20.4233 15.428 20.8572C15.428 21.2912 15.7505 21.6498 16.1688 21.7066L16.2852 21.7144H20.2852L20.4015 21.7066C20.8198 21.6498 21.1423 21.2912 21.1423 20.8572C21.1423 20.4233 20.8198 20.0647 20.4015 20.0079L20.2852 20.0001ZM8.28516 16.5755H11.1383C11.2736 16.5755 11.3869 16.6695 11.4165 16.7957L11.424 16.8612V19.7144C11.424 19.8496 11.3301 19.9629 11.2038 19.9926L11.1383 20.0001H8.28516C8.1499 20.0001 8.0366 19.9061 8.00699 19.7799L7.99944 19.7144V16.8612C7.99944 16.726 8.09342 16.6127 8.21964 16.583L8.28516 16.5755H11.1383H8.28516ZM20.2852 14.8612H16.2852L16.1688 14.869C15.7505 14.9258 15.428 15.2844 15.428 15.7184C15.428 16.1523 15.7505 16.5109 16.1688 16.5677L16.2852 16.5755H20.2852L20.4015 16.5677C20.8198 16.5109 21.1423 16.1523 21.1423 15.7184C21.1423 15.2844 20.8198 14.9258 20.4015 14.869L20.2852 14.8612ZM20.2852 9.71057H7.1423L7.02599 9.7184C6.60762 9.77515 6.28516 10.1338 6.28516 10.5677C6.28516 11.0017 6.60762 11.3603 7.02599 11.417L7.1423 11.4249H20.2852L20.4015 11.417C20.8198 11.3603 21.1423 11.0017 21.1423 10.5677C21.1423 10.1338 20.8198 9.77515 20.4015 9.7184L20.2852 9.71057Z" fill="#1179FC"></path>
+                                        </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2">Blog</p>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.5366 4.05721C15.1357 2.84324 16.8668 2.84323 17.466 4.0572L20.7009 10.6119L27.9343 11.6629C29.274 11.8576 29.809 13.504 28.8396 14.4489L23.6054 19.551L24.841 26.7552C25.0698 28.0895 23.6694 29.107 22.4711 28.4771L16.0013 25.0757L9.53146 28.4771C8.3332 29.107 6.93273 28.0895 7.16157 26.7552L8.3972 19.551L3.163 14.4489C2.19359 13.504 2.72852 11.8576 4.06822 11.6629L11.3017 10.6119L14.5366 4.05721Z" fill="#02BD6E"></path>
+                                        </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Reviews</p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between p-2">
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.6566 28.5714H8.82692C8.36727 28.5558 7.99944 28.1782 7.99944 27.7148C7.99944 27.2808 8.3219 26.9222 8.74028 26.8654L8.85658 26.8576L9.42183 26.8575L9.42801 26.8571L10.8566 26.8571V24.0023L4.85658 24.002C3.43642 24.002 2.28516 22.8507 2.28516 21.4306V5.99941C2.28516 4.57925 3.43642 3.42798 4.85658 3.42798H27.141C28.5611 3.42798 29.7124 4.57925 29.7124 5.99941V16.4936C29.1156 16.1784 28.4355 16 27.7137 16H16.8566C14.4896 16 12.5709 17.9187 12.5709 20.2857V27.7142C12.5709 28.0078 12.6004 28.2944 12.6566 28.5714ZM16.8566 17.1428C15.1208 17.1428 13.7137 18.5499 13.7137 20.2857V27.7142C13.7137 29.45 15.1208 30.8571 16.8566 30.8571H27.7137C29.4495 30.8571 30.8566 29.45 30.8566 27.7142V20.2857C30.8566 18.5499 29.4495 17.1428 27.7137 17.1428H16.8566ZM17.7137 27.7142C17.7137 27.2409 18.0975 26.8571 18.5709 26.8571H25.9994C26.4728 26.8571 26.8566 27.2409 26.8566 27.7142C26.8566 28.1876 26.4728 28.5714 25.9994 28.5714H18.5709C18.0975 28.5714 17.7137 28.1876 17.7137 27.7142ZM17.7137 21.7143C17.0825 21.7143 16.5709 21.2026 16.5709 20.5714C16.5709 19.9402 17.0825 19.4285 17.7137 19.4285C18.3449 19.4285 18.8566 19.9402 18.8566 20.5714C18.8566 21.2026 18.3449 21.7143 17.7137 21.7143ZM21.1423 24C21.1423 24.6311 20.6306 25.1428 19.9994 25.1428C19.3683 25.1428 18.8566 24.6311 18.8566 24C18.8566 23.3688 19.3683 22.8571 19.9994 22.8571C20.6306 22.8571 21.1423 23.3688 21.1423 24ZM22.2852 21.7143C21.654 21.7143 21.1423 21.2026 21.1423 20.5714C21.1423 19.9402 21.654 19.4285 22.2852 19.4285C22.9163 19.4285 23.428 19.9402 23.428 20.5714C23.428 21.2026 22.9163 21.7143 22.2852 21.7143ZM25.7137 24C25.7137 24.6311 25.2021 25.1428 24.5709 25.1428C23.9397 25.1428 23.428 24.6311 23.428 24C23.428 23.3688 23.9397 22.8571 24.5709 22.8571C25.2021 22.8571 25.7137 23.3688 25.7137 24ZM26.8566 21.7143C26.2254 21.7143 25.7137 21.2026 25.7137 20.5714C25.7137 19.9402 26.2254 19.4285 26.8566 19.4285C27.4878 19.4285 27.9994 19.9402 27.9994 20.5714C27.9994 21.2026 27.4878 21.7143 26.8566 21.7143Z" fill="#EB5757"></path>
+                                        </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Affiliate</p>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M17.3353 21.3333C17.3353 20.3852 17.5332 19.4834 17.8899 18.6668H8.33835C6.68232 18.6668 5.33984 20.0093 5.33984 21.6653V22.892C5.33984 23.6547 5.57772 24.3985 6.02033 25.0197C8.07655 27.9055 11.4405 29.335 16.0018 29.335C17.5685 29.335 18.9942 29.1664 20.2745 28.828L19.8128 26.5195C18.3037 25.299 17.3353 23.4294 17.3353 21.3333ZM22.6685 9.33976C22.6685 5.65786 19.6837 2.6731 16.0018 2.6731C12.3199 2.6731 9.33512 5.65786 9.33512 9.33976C9.33512 13.0217 12.3199 16.0064 16.0018 16.0064C19.6837 16.0064 22.6685 13.0217 22.6685 9.33976ZM29.3353 21.3333C29.3353 23.1741 28.4027 24.7971 26.9842 25.7555L26.802 26.6666H21.202L21.0197 25.7555C19.6012 24.7971 18.6686 23.1741 18.6686 21.3333C18.6686 18.3877 21.0564 15.9999 24.002 15.9999C26.9475 15.9999 29.3353 18.3877 29.3353 21.3333ZM21.4686 27.9999L21.6804 29.0588C21.8674 29.9937 22.6882 30.6666 23.6416 30.6666H24.3623C25.3157 30.6666 26.1365 29.9937 26.3235 29.0588L26.5353 27.9999H21.4686Z" fill="#DD83FC"></path>
+                                        </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Experts</p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between p-2">
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M17.4107 9.90801C18.7125 8.60626 20.823 8.60626 22.1248 9.90801C23.4265 11.2098 23.4265 13.3203 22.1248 14.6221C20.823 15.9238 18.7125 15.9238 17.4107 14.6221C16.109 13.3203 16.109 11.2098 17.4107 9.90801ZM20.7105 11.3222C20.1898 10.8015 19.3456 10.8015 18.8249 11.3222C18.3042 11.8429 18.3042 12.6871 18.8249 13.2078C19.3456 13.7285 20.1898 13.7285 20.7105 13.2078C21.2312 12.6871 21.2312 11.8429 20.7105 11.3222ZM26.2647 3.34952C27.418 3.70742 28.321 4.61014 28.6794 5.7632L28.9547 6.64895C29.9468 9.84116 29.0879 13.3202 26.7241 15.684L25.3936 17.0146C26.7634 18.8408 26.6178 21.4435 24.9566 23.1046L23.2999 24.7613C22.9094 25.1518 22.2762 25.1518 21.8857 24.7613L19.7663 22.6419L19.5305 22.8776C18.6193 23.7888 17.1419 23.7888 16.2307 22.8776L15.5813 22.2281L14.4996 24.082C14.3434 24.3498 14.0717 24.53 13.7642 24.5698C13.4566 24.6095 13.148 24.5044 12.9288 24.2851L7.74331 19.0997C7.52542 18.8818 7.42015 18.5756 7.45797 18.2698C7.4958 17.964 7.67249 17.6927 7.93689 17.5345L9.78285 16.4297L9.15527 15.8022C8.24405 14.8909 8.24405 13.4136 9.15527 12.5023L9.39502 12.2626L7.27372 10.1413C6.8832 9.75076 6.8832 9.11759 7.27372 8.72707L8.93043 7.07036C10.5922 5.40861 13.1963 5.26349 15.0226 6.63501L16.3504 5.30717C18.7132 2.94436 22.1906 2.08513 25.382 3.07556L26.2647 3.34952ZM26.7695 6.35677C26.6066 5.83265 26.1961 5.42233 25.6719 5.25965L24.7892 4.98569C22.307 4.21535 19.6024 4.88364 17.7646 6.72139L10.5695 13.9165C10.4393 14.0467 10.4393 14.2578 10.5695 14.3879L17.6449 21.4634C17.7751 21.5935 17.9861 21.5936 18.1163 21.4634L25.3099 14.2698C27.1484 12.4313 27.8164 9.72535 27.0448 7.24252L26.7695 6.35677ZM8.92112 24.5259C9.31165 24.1354 9.31165 23.5022 8.92112 23.1117C8.5306 22.7212 7.89744 22.7212 7.50691 23.1117L4.20708 26.4115C3.81656 26.8021 3.81656 27.4352 4.20708 27.8258C4.5976 28.2163 5.23077 28.2163 5.62129 27.8258L8.92112 24.5259ZM6.32835 20.519C6.71888 20.9095 6.71888 21.5427 6.32835 21.9332L4.91414 23.3474C4.52361 23.7379 3.89045 23.7379 3.49992 23.3474C3.1094 22.9569 3.1094 22.3237 3.49992 21.9332L4.91414 20.519C5.30466 20.1285 5.93783 20.1285 6.32835 20.519ZM11.5111 27.1214C11.9017 26.7309 11.9017 26.0978 11.5112 25.7072C11.1206 25.3167 10.4875 25.3167 10.0969 25.7072L8.68548 27.1186C8.29495 27.5092 8.29494 28.1423 8.68546 28.5329C9.07598 28.9234 9.70914 28.9234 10.0997 28.5329L11.5111 27.1214Z" fill="#EB5757"></path>
+                                        </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Instantly Accelerator</p>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" fill="#0866ff" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>facebook</title> <path d="M30.996 16.091c-0.001-8.281-6.714-14.994-14.996-14.994s-14.996 6.714-14.996 14.996c0 7.455 5.44 13.639 12.566 14.8l0.086 0.012v-10.478h-3.808v-4.336h3.808v-3.302c-0.019-0.167-0.029-0.361-0.029-0.557 0-2.923 2.37-5.293 5.293-5.293 0.141 0 0.281 0.006 0.42 0.016l-0.018-0.001c1.199 0.017 2.359 0.123 3.491 0.312l-0.134-0.019v3.69h-1.892c-0.086-0.012-0.185-0.019-0.285-0.019-1.197 0-2.168 0.97-2.168 2.168 0 0.068 0.003 0.135 0.009 0.202l-0.001-0.009v2.812h4.159l-0.665 4.336h-3.494v10.478c7.213-1.174 12.653-7.359 12.654-14.814v-0z"></path> </g></svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Facebook Group</p>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between p-2">
+                                    <div class="col-md-5 col-sm-12 d-flex p-2  border-bottom align-items-center">
+                                        <svg width="17%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M13.9045 20.3455C13.9021 20.3399 13.8997 20.3343 13.8972 20.3287C13.759 20.2961 13.622 20.2605 13.4863 20.2218C13.4827 20.2207 13.4791 20.2197 13.4754 20.2187C12.1537 19.8399 10.9546 19.1712 9.95128 18.2856C8.05318 16.6103 6.85603 14.1592 6.85603 11.4285C6.85603 6.37904 10.9494 2.28564 15.9989 2.28564C20.7596 2.28564 24.6704 5.92424 25.1022 10.5722C25.1459 11.0435 24.758 11.4285 24.2846 11.4285C23.8112 11.4285 23.4326 11.0431 23.3787 10.5728C22.9544 6.87316 19.8122 3.99993 15.9989 3.99993C11.8962 3.99993 8.57031 7.32581 8.57031 11.4285C8.57031 14.5168 10.4549 17.1649 13.1367 18.2856C13.1519 18.292 13.1672 18.2983 13.1824 18.3046C13.4118 18.3986 13.6469 18.4815 13.887 18.5526C13.9253 18.4604 13.9694 18.3713 14.019 18.2856C14.4142 17.6024 15.1528 17.1428 15.9989 17.1428C16.8449 17.1428 17.5836 17.6024 17.9788 18.2856C17.989 18.3033 17.999 18.3211 18.0087 18.339C18.1847 18.6629 18.2846 19.034 18.2846 19.4285C18.2846 20.6909 17.2612 21.7142 15.9989 21.7142C15.0627 21.7142 14.2579 21.1512 13.9045 20.3455C13.9046 20.3455 13.9045 20.3454 13.9045 20.3455ZM12.7772 21.7992C10.7237 21.1618 8.93104 19.9317 7.59968 18.3086C5.89421 18.5064 4.57031 19.9557 4.57031 21.7142V22.5309C4.57031 26.7808 9.38234 29.7142 15.9989 29.7142C22.6154 29.7142 27.4275 26.6198 27.4275 22.5309V21.7142C27.4275 19.8207 25.8924 18.2856 23.9989 18.2856H19.8332C19.941 18.6478 19.9989 19.0314 19.9989 19.4285C19.9989 21.6376 18.208 23.4285 15.9989 23.4285C14.6753 23.4285 13.5044 22.7859 12.7772 21.7992ZM21.7132 11.4285C21.7132 9.70077 20.9464 8.15213 19.7346 7.10431C18.7327 6.23823 17.4267 5.71422 15.9989 5.71422C12.843 5.71422 10.2846 8.27259 10.2846 11.4285C10.2846 12.504 10.5819 13.5108 11.0992 14.3705C11.6309 15.2543 12.395 15.9823 13.3069 16.4702C14.0168 15.8237 14.9609 15.4285 15.9989 15.4285C17.0357 15.4285 17.9805 15.823 18.6911 16.4701C20.4897 15.5077 21.7132 13.611 21.7132 11.4285Z" fill="#02BD6E"></path>
+                                        </svg>
+                                        <p class="fs-6 fw-bold ms-2 mt-2  ">Help Desk</p>
+                                    </div>
+                                
+                                </div>
+                            </div> 
+                            <div class="col-md-7 col-sm-12 d-md-flex align-items-center justify-content-between">
+                                <div class="col-md-7 col-sm-12 mb-2">
+                                    <h1 class="fw-bold">Find & Close Your Ideal Clients</h1>
+                                    <p class="fs-5">Instantly turns leads into clients with Automated Outreach,
+                                        Deliverability Network, Lead Database & CRM</p>
+                                    <button class="btn btn-outline-primary rounded-pill px-4 py-2 fs-4  mt-3">Book A
+                                        Demo</button>
+                                </div>
+                                <div class="col-md-4 col-sm-12 d-flex justify-content-center align-items-center ms-2">
+                                    <img src="images/map.svg" alt="map" class="w-100">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </ul>
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 d-flex align-items-center">
+                    <li class="nav-item my-2">
+                        <a class="nav-link text-white fw-medium fs-4" href="#">Login</a>
+                    </li>
+                    <li class="nav-item my-2 ">
+                        <button type="button" class="btn btn-secondary fw-bold mx-3 rounded-5">GET STARTED</button>
+                    </li>
+                    <li class="nav-item my-2 ">
+                        <button type="button" class="btn bg-white text-primary fw-bold rounded-5">SEE DEMO</button>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <header class="bg-img pt-5">
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-11 col-lg-9 text-center mx-auto">
+                    <h1 class="fw-semibold">Find, Contact & Close <br><span class="bg-gradiant">Your Ideal Clients.</span></h1>
+                    <div class="col-11 col-xl-9 mx-auto mt-4">
+                        <p class="text-white fw-lg-semibold fs-5 home-hero-heading">Instantly turns leads into clients with Automated Outreach, Deliverability Network, Sales Engagement, B2B Lead Database & AI-Powered CRM</p>
+                    </div>
+                    <div class="col-12 col-lg-6 mx-auto mt-4">
+                        <button type="button" class="btn btn-primary fs-5 fw-bold rounded-5 py-2 px-3">START FOR FREE</button>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-10 mx-auto mt-4 d-md-flex justify-content-center">
+                        <div class="d-flex my-3">
+                            <img src="images/check.png" alt="check">
+                            <p class="text-white fw-semibold  mb-0 mx-3">No credit card required</p>
+                        </div>
+                        <div class="d-flex my-3">
+                            <img src="images/check.png" alt="check">
+                            <p class="text-white fw-semibold  mb-0 mx-3">Free leads included</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- yha images ayegi -->
+        <!-- <div class="container px-0 px-lg-2 mt-lg-5">
+
+            <div class="row">
+                <div class="col-12 col-lg-11 text-center mx-auto mt-5 pt-lg-5 px-0 px-lg-2">
+                    <div class="position-relative ">
+                        <img src="images/hero-back.png" alt="info" class="w-100 z-n1 d-none d-lg-block heroback">
+                        <img src="images/hero-back2.png" alt="info" class="w-100 z-n1 d-lg-none d-block heroback">
+                        <img src="images/Mockups.png" alt="info" class="w-72 position-absolute hero-main d-none d-lg-block">
+                        <div class="col-4 col-sm-2 col-lg-3 position-absolute rounded-4 hero-graf p-2 p-sm-1 p-lg-3 z-1">
+                            <img src="images/hero-garf.png" alt="like" class="w-100">
+                        </div>
+                        <div class="col-5 col-sm-4 position-absolute rounded-4 hero-cash p-1 p-sm-2 p-lg-5 z-1">
+                            <img src="images/hero-cash.png" alt="like" class="w-95" data-aos-delay="300">
+                        </div>
+                        <div class="col-3 col-sm-2 col-lg-2 position-absolute rounded-4 hero-man p-2 p-sm-2 p-lg-3 z-1">
+                            <img src="images/hero-man1.png" alt="like" class="w-100">
+                        </div>
+                        <div class="col-6 col-sm-5 col-lg-5 position-absolute rounded-4 hero p-1 p-sm-4 z-1">
+                            <img src="images/hero.svg" alt="like" class="w-100 heroshotimg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="container px-0 px-lg-2 mt-lg-5">
+            <div class="row">
+                <div class="col-12 col-lg-11 text-center mx-auto mt-5 pt-lg-5 px-0 px-lg-2">
+                    <div class="position-relative">
+                        <!-- Background Images (static) -->
+                        <img src="images/hero-back.png" alt="info" class="w-100 z-n1 d-none d-lg-block heroback">
+                        <img src="images/hero-back2.png" alt="info" class="w-100 z-n1 d-lg-none d-block heroback">
+        
+                        <!-- Main Mockup Image (animated from bottom) -->
+                        <img src="images/Mockups.png" alt="info" class="w-72 position-absolute hero-main d-none d-lg-block">
+        
+                        <!-- Hero Graf (animated from right) -->
+                        <div class="col-4 col-sm-2 col-md-3 col-lg-3 position-absolute rounded-4 hero-graf p-2 p-sm-1 p-lg-3 z-1">
+                            <img src="images/hero-garf.png" alt="like" class="w-100">
+                        </div>
+        
+                        <!-- Hero Cash (animated from right) -->
+                        <div class="col-5 col-sm-4 col-lg-5 position-absolute rounded-4 hero-cash p-1 p-sm-2 p-md-1 p-lg-5 z-1">
+                            <img src="images/hero-cash.png" alt="like" class="w-95" data-aos-delay="300">
+                        </div>
+        
+                        <!-- Hero Man (animated from left) -->
+                        <div class="col-3 col-sm-2 col-lg-2 position-absolute rounded-4 hero-man p-2 p-sm-2 p-md-1 p-lg-3 z-1">
+                            <img src="images/hero-man1.png" alt="like" class="w-100">
+                        </div>
+        
+                        <!-- Hero Shot Image (animated from left) -->
+                        <div class="col-6 col-sm-5 col-lg-5 position-absolute rounded-4 hero p-1 p-sm-4 z-1">
+                            <img src="images/hero.svg" alt="like" class="w-100 heroshotimg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </header>
+    <!-- header k nechy wly text ka box -->
+    <div class="container customer-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-12 col-sm-6 col-lg-5 my-3">
+                <h4 class="customer-text text-black">25,000+ customers <span>who are getting more clients</span></h4>
+            </div>
+            <div class="col-12 col-sm-5 col-lg-3 my-3 px-0">
+                <a type="button" class="btn btn-outline-primary py-2 px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Carousel card bo -->
+    <div id="customCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <div class="card mb-3 p-4 border-0 w-100 customslides" style="max-width: 1130px; max-height: 470px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="images/profile.jpeg" class="img-fluid rounded-4 h-100" alt="profile">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body pt-3 pt-lg-0 ps-4">
+                                <img src="images/quote.svg" class="img-fluid mb-4" alt="quote">
+                                <p class="card-text fw-medium font-size-28 text-body-secondary">
+                                    Email outreach is one of the most effective ways to expand your business and gain new business. Instantly does this well;
+                                    <span class="text-black">you can add unlimited email accounts and just does all the basics in the right way!</span>
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="card-text fw-semibold text-light-black fs-4">Alex Siderius</p>
+                                        <p class="card-text fw-semibold fs-4 text-secondary">CEO at Webaware</p>
+                                    </div>
+                                     <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <!-- <img src="images/right.png" alt="right-arrow"> -->
+                                       <img src="images/right.png" alt="right-arrow" class="pb-5">
+                                    </button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <div class="card mb-3 p-4 border-0 w-100 customslides" style="max-width: 1130px; max-height: 470px;">
+                    <!-- Your content for slide 2 goes here -->
+                     <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="images/card.jpeg" class="img-fluid rounded-4 h-100" alt="profile">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body pt-3 pt-lg-0 ps-4">
+                                <img src="images/quote.svg" class="img-fluid mb-4" alt="quote">
+                                <p class="card-text fw-medium font-size-28 text-body-secondary">
+                                    “I’ve specialised in cold email marketing since 2018 and in this time I've used almost every popular cold-emailing tool available on the market today -
+                                    <span class="text-black">Instantly is hands down my favourite of them all.”</span>
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="card-text fw-semibold text-light-black fs-4">Sam Wilson</p>
+                                        <p class="card-text fw-semibold fs-4 text-secondary">Managing Director of Canbury Partners</p>
+                                    </div>
+                                     <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <img src="images/right.png" alt="right-arrow" class="pb-5">
+                                    </button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <div class="card mb-3 p-4 border-0 w-100 customslides" style="max-width: 1130px; max-height: 470px;">
+                    <!-- Your content for slide 3 goes here -->
+                     <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="images/card2.png" class="img-fluid rounded-4 h-100" alt="profile">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body pt-3 pt-lg-0 ps-4">
+                                <img src="images/quote.svg" class="img-fluid mb-4" alt="quote">
+                                <p class="card-text fw-medium font-size-28 text-body-secondary">
+                                    “Instantly is the exact email outreach solution that I always wish existed.
+                                    <span class="text-black">We’ve tried almost every product that people in the outbound space talks about and none of them even comes close to this.”</span>
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <p class="card-text fw-semibold text-light-black fs-4">Tony Liu</p>
+                                        <p class="card-text fw-semibold fs-4 text-secondary">CEO at Omnichannel</p>
+                                    </div>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <img src="images/right.png" alt="right-arrow" class="pb-5">
+                                    </button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!-- progress box -->
+    <div class="container pt-5 pb-0">
+        <div class="row">
+            <div class="col-12 d-lg-flex circling py-1">
+                <div class="col-12 col-sm-5 col-lg-3 mx-auto">
+                    <div class="card border-0 background bg-color" >
+                        <img src="images/circle1.svg" class="card-img-top w-30 d-block mx-auto my-4" alt="circle1">
+                        <div class="card-body">
+                          <p class="card-title fw-semibold fs-3 text-sm-center lh-sm">Instantly User Ratings</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-5 col-lg-3 mx-auto">
+                    <div class="card border-0 background bg-color" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                        <div class="progress blue mx-auto">
+                            <span class="progress-left">
+                                <span class="progress-bar"></span>
+                            </span>
+                            <span class="progress-right">
+                                <span class="progress-bar"></span>
+                            </span>
+                            <div class="progress-value">9.9</div>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title fw-semibold fs-3 lh-sm text-sm-center">Ease of Use</p>
+                            <p class="fw-medium fs-19 text-sm-center">Email Marketing Average: 8.7</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-5 col-lg-3 mx-auto">
+                    
+                    <div class="card border-0 background bg-color" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                        <div class="progress green mx-auto">
+                            <span class="progress-left">
+                                <span class="progress-bar"></span>
+                            </span>
+                            <span class="progress-right">
+                                <span class="progress-bar"></span>
+                            </span>
+                            <div class="progress-value2">9.7</div>
+                        </div>
+                        <div class="card-body">
+                          <p class="card-title fw-semibold fs-3 lh-sm text-sm-center">Quality of support</p>
+                          <p class="fw-medium fs-19 text-sm-center">Email Marketing Average: 8.5</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-12 col-sm-5 col-lg-3 mx-auto">
+                    
+                    <div class="card border-0 background bg-color" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                        <div class="progress red mx-auto">
+                            <span class="progress-left">
+                                <span class="progress-bar"></span>
+                            </span>
+                            <span class="progress-right">
+                                <span class="progress-bar"></span>
+                            </span>
+                            <div class="progress-value3">9.7</div>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title fw-semibold fs-3 lh-sm text-sm-center">Ease of setup</p>
+                            <p class="fw-medium fs-19 text-sm-center">Email Marketing Average: 8.4</p>
+                        </div>
+                    </div>
+                </div>      
+            </div>
+        </div>
+    </div>
+    <div class="container py-5 pb-lg-0">
+        <div class="row my-5">
+            <div class="card mb-3 p-4 border-0 w-100" style="max-width: 1440px;">
+                <div class="row g-0">
+                    <div class="col-md-5">
+                        <img src="images/email-account.png" class="img-fluid rounded-4 h-100" alt="profile" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body pt-3 pt-lg-5 ps-lg-5">
+                            <h2 class="fw-semibold fs-56 mt-3 mb-4 mb-lg-5" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">Infinitely Scale Your Outreach with <span class="bg-gradiant">Unlimited Accounts</span></h2>
+                            <div class="col-12 mb-4">
+                                <a type="button" class="btn btn-outline-primary py-2  px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                            </div>
+                            <img src="images/plus.png" alt="plus" class="ms-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="card mb-3 p-4 border-0 w-100" style="max-width: 1440px;">
+                <div class="row g-0">
+                    <div class="col-md-7">
+                        <div class="card-body pt-3 pt-lg-5 ps-lg-5">
+                            <h2 class="fw-semibold fs-56 mt-3 mb-4 mb-lg-5" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">Reach Your Prospects Inbox with <span class="bg-gradiant">our Deliverability Network</span></h2>
+                            <div class="col-12 mb-4">
+                                <a type="button" class="btn btn-outline-primary py-2  px-4 fw-semibold fs-19 rounded-5" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">START FOR FREE</a>
+                            </div>
+                            <img src="images/plus.png" alt="plus" class="ms-4">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="images/warmup-mail.png" class="img-fluid rounded-4 h-100" alt="profile" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- faq-section -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 px-0">
+                <div class="faq-section" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="faq-item my-3 py-2 ps-lg-5 rounded-4" onclick="toggleFAQ(this)">
+                        <h4 class="faq-title fw-semibold"><span class="text-secondary">Protect Your Deliverability with</span>  Email Validation and Bulk Domain Testing</h4>
+                        <div class="arrow bg-body-secondary rounded-5 pb-2 p-1">
+                            <svg width="15" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                <g id="SVGRepo_iconCarrier">
+                                    <path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="card mb-3 p-4 border-0 w-100" style="max-width: 1440px;">
+                            <div class="row g-0">
+                                <div class="col-md-7">
+                                    <div class="card-body pt-5 ps-5">
+                                        <p class="fs-3">Clean & verify your lead lists and ensure your domains are correctly set up for cold emailing. Our one-click bulk domain tester lets you know if your domain is missing important records.</p>
+                                        <div class="col-12 mb-4">
+                                            <a type="button" class="btn btn-primary py-2  px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <img src="images/setion1.png" class="img-fluid rounded-4 h-100" alt="profile">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="faq-item my-3 py-2 ps-lg-5 rounded-4" onclick="toggleFAQ(this)">
+                        <h4 class="faq-title fw-semibold"><span class="text-secondary">Automate & Personalise Emails with </span>  Campaign Builder & Integrations</h4>
+                        <div class="arrow bg-body-secondary rounded-5 pb-2 p-1">
+                            <svg width="15" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                <g id="SVGRepo_iconCarrier">
+                                    <path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="card mb-3 p-4 border-0 w-100" >
+                            <div class="row g-0">
+                                <div class="col-md-7">
+                                    <div class="card-body pt-5 ps-5">
+                                        <p class="fs-3 mb-4">Our Campaign Builder lets you use variables, sequences and smart scheduling to maximise your deliverability and response rates.</p>
+                                        <p class="fs-3 bg-gradiant">Use our Zapier integration and webhooks for advanced automations.</p>
+
+                                        <div class="col-12 mb-4">
+                                            <a type="button" class="btn btn-primary py-2  px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <img src="images/setion2.png" class="img-fluid rounded-4 h-100" alt="profile">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="faq-item my-3 py-2 ps-lg-5 rounded-4" onclick="toggleFAQ(this)">
+                        <h4 class="faq-title fw-semibold"><span class="text-secondary">Save Time with</span>  Inbox Rotation</h4>
+                        <div class="arrow bg-body-secondary rounded-5 pb-2 p-1">
+                            <svg width="15" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                <g id="SVGRepo_iconCarrier">
+                                    <path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#000000"></path>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="card mb-3 p-4 border-0 w-100" >
+                            <div class="row g-0">
+                                <div class="col-md-7">
+                                    <div class="card-body pt-5 ps-5">
+                                        <p class="fs-3 mb-4">Instead of having separate campaigns for each of your sending accounts you can add all your sending accounts to one campaign.</p>
+                                        <p class="fs-3 bg-gradiant">Instantly will then rotate sending emails between these accounts to make it more natural.</p>
+
+                                        <div class="col-12 mb-4">
+                                            <a type="button" class="btn btn-primary py-2  px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <img src="images/setion3.png" class="img-fluid rounded-4 h-100" alt="profile">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid my-5 px-2" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="row px-5">
+            <div class="col-12 col-lg-11 p-lg-5 bg-img1 pb-lg-0 text-center mx-auto rounded-4">
+                <div class="col-11 col-sm-10 col-lg-9 mx-auto">
+                    <h3 class="fw-semibold display-5 text-white letter-spacing-1px">Respond to Leads and Close Deals <span class="bg-gradiant">with Unibox</span></h3>
+                    <div class="col-12 col-lg-11 mb-2 mb-lg-5 mx-auto">
+                        <p class="fw-medium fs-5 text-white">Managing 1 inbox is easy - with Unibox you can manage tens or hundreds of inboxes simultaneously. Mark leads as positive or negative, forward or respond to them to book meetings and close deals from one simple inbox.</p>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <a type="button" class="btn btn-primary py-2  px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                    </div>
+                    <div class="position-relative ">
+                        <img src="images/info.png" alt="info" class="w-100 z-n1">
+                        <div class="col-5 col-sm-4 col-lg-3 bg-white position-absolute rounded-3 rounded-lg-4 like-setting p-2 p-lg-3 shadow z-1">
+                            <img src="images/like.png" alt="like" class="w-100">
+                        </div>
+                        <div class="col-2 col-lg-1 bg-warning position-absolute rounded-3 rounded-lg-4 undefined-setting p-2 p-sm-3 p-lg-3 shadow z-1">
+                            <img src="images/undefined.svg" alt="like" class="w-100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Optimize with Campaign Analytics box -->
+    <div class="container py-lg-5">
+        <div class="row">
+            <div class="card mb-3 p-lg-4 border-0 w-100 bg-color px-lg-0" style="max-width: 1440px;">
+                <div class="row g-0">
+                    <div class="col-md-5">
+                        <div class="card-body pt-2 pt-lg-5 ps-lg-0 px-lg-5 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                            <h2 class="fw-semibold fs-48 mt-3 mb-5 analytics-title">Optimize with <span class="bg-gradiant">Campaign Analytics</span></h2>
+                            <p class="analytics-title-des">See exactly what’s working with our advanced analytics dashboard. Pause the campaigns that need work and scale the ones that are performing well.</p>
+                            <div class="col-12 mb-4">
+                                <a type="button" class="btn btn-outline-primary py-2  px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-11 col-md-6 position-relative mx-auto mx-lg-0">
+                        <img src="images/Group.png" class="img-fluid rounded-4 w-100 h-100 shadow" alt="profile" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+                        <div class="col-4 bg-white position-absolute rounded-2 Group-min-setting p-2 shadow z-1">
+                            <img src="images/Group-min.png" alt="like" class="h-100 w-100">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Large screens (lg and above) -->
+        <div class="row d-none d-lg-block">
+            <div class="card mb-3 p-4 border-0 w-100 bg-color ps-lg-0">
+                <div class="row g-0">
+                    <div class="col-sm-10 col-md-5 col-lg-6 position-relative h-auto mx-auto">
+                        <div class="col-5 col-sm-8 col-lg-7 position-absolute top-0 start-0">
+                            <img src="images/guess-work1.png" class="img-fluid rounded-4 w-100 " alt="profile" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+                        </div>
+                        <div class="col-5 col-sm-8 col-lg-7 position-absolute bottom-0 end-0">
+                            <img src="images/guess-work2.png" class="img-fluid rounded-4 w-100 " alt="profile" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                        </div>
+                        <div class="col-2 position-absolute bottom-0 start-0 p-sm-2 mb-5 ms-4">
+                            <img src="images/guess-work3.svg" class="img-fluid rounded w-75 " alt="profile" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                        </div>
+                        <div class="col-2 position-absolute top-0 end-0 mt-5 p-sm-2">
+                            <img src="images/guess-work4.svg" class="img-fluid rounded w-75 " alt="profile" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                        </div>
+                    </div>
+                    <div class="col-md-6 ps-5">
+                        <div class="card-body pt-0 ps-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                            <h2 class="fw-semibold fs-48 mb-4">Eliminate Guesswork with <span class="bg-gradiant">Instantly Sales  Accelerator</span></h2>
+                            <p class="fs-5 mb-4">Get access to 50+ docs and SOPs, 600+ email outreach templates, all our set-up guides and step-by-step instructions on exactly how we set up campaigns + our Sales Vault which includes 200+ Email outreach strategies and Tools we’re using.</p>
+                            <div class="col-12">
+                                <a type="button" class="btn btn-outline-primary py-2 px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Small screens (below lg) -->
+        <div class="row d-block d-lg-none h-650px h-680px h-910px">
+            <div class="card mb-3 p-lg-4 border-0 w-100 bg-color">
+                <div class="row g-0">
+                    <div class="col-12 col-md-10 ps-lg-5 mx-auto">
+                        <div class="card-body pt-2 pt-lg-5 px-lg-5">
+                            <h2 class="fw-semibold fs-48 mt-3 mb-5 analytics-title">Eliminate Guesswork with <span class="bg-gradiant">Instantly Sales  Accelerator</span></h2>
+                            <p class="analytics-title-des mb-4">Get access to 50+ docs and SOPs, 600+ email outreach templates, all our set-up guides and step-by-step instructions on exactly how we set up campaigns + our Sales Vault which includes 200+ Email outreach strategies and Tools we’re using.</p>
+                            <div class="col-12">
+                                <a type="button" class="btn btn-outline-primary py-2 px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 col-md-10 position-relative h-294px h-342px h-460px mx-auto">
+                        <div class="col-9 col-sm-8 col-md-9 position-absolute top-0 start-0">
+                            <img src="images/guess-work1.png" class="img-fluid rounded-4 w-100 " alt="profile">
+                        </div>
+                        <div class="col-9 col-sm-8 col-md-9 position-absolute bottom-0 end-0">
+                            <img src="images/guess-work2.png" class="img-fluid rounded-4 w-100 " alt="profile">
+                        </div>
+                        <div class="col-2 position-absolute bottom-0 start-0 p-sm-2 mb-5 ms-4">
+                            <img src="images/guess-work3.svg" class="img-fluid rounded w-75 " alt="profile">
+                        </div>
+                        <div class="col-2 position-absolute top-0 end-0 mt-5 p-sm-2">
+                            <img src="images/guess-work4.svg" class="img-fluid rounded w-75 " alt="profile">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- pricing cards -->
+    <div class="container">
+        <div class="col-3 mx-auto">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Monthly</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Yearly</button>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                <div class="col-12 px-0">
+                    <div class="row my-2 mx-auto justify-content-between align-center">
+                        <div class="col-lg-4 col-sm-6 col-12 my-3 d-flex">
+                            <div class="card border-0 mx-auto bg-white rounded-4 shadow w-100" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                                <div class="card-body">
+                                    <div class="col-12 p-1 pt-3">
+                                        <img src="images/plane.svg" class="img-fluid rounded-3" alt="profile">
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <h2 class="fw-bold mb-3">Growth</h2>
+                                        <h2 class="display-5 fw-bold mb-4">$37<small class="fw-medium fs-3">/mo</small></h2>
+                                        <div class="col-12 d-grid gap-2 mb-4 mt-1">
+                                            <a type="button" class="btn btn-outline-primary py-3 btn-lg px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                            <p class="pricing-point-text mt-3">Unlimited Email Accounts</p>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                            <p class="pricing-point-text mt-3">Unlimited Email Warmup</p>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                            <p class="pricing-point-text mt-3">1000 Uploaded Contacts</p>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                            <p class="pricing-point-text mt-3">5000 Emails Monthly</p>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                            <p class="pricing-point-text mt-3">Chat Support</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12 my-3 d-flex">
+                            <div class="card border-0 mx-auto bg-white rounded-4 shadow w-100" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                                <div class="card-body">
+                                    <div class="col-12 p-1 pt-3">
+                                        <img src="images/rocket.svg" class="img-fluid rounded-3" alt="profile">
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <h2 class="fw-bold mb-3">Hypergrowth</h2>
+                                        <h2 class="display-5 fw-bold mb-1">$97<small class="fw-medium fs-3">/mo</small></h2>
+                                        <div class="col-12 d-grid gap-2 mb-4 ">
+                                            <a type="button" class="btn btn-primary py-3 btn-lg px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                            <p class="pricing-point-text mt-3">Unlimited Email Accounts</p>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                            <p class="pricing-point-text mt-3">Unlimited Email Warmup</p>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                            <p class="pricing-point-text mt-3">25 000 Uploaded Contacts</p>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                            <p class="pricing-point-text mt-3">100 000 Emails Monthly</p>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                            <p class="pricing-point-text mt-3">Premium Live Support</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-6 col-12 my-3 d-flex">
+                            <div class="card border-0 mx-auto bg-white rounded-4 shadow w-100" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                                <div class="card-body">
+                                    <div class="col-12 p-1 pt-3">
+                                        <img src="images/star.svg" class="img-fluid rounded-3" alt="profile">
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <h2 class="fw-bold mb-3">Light Speed</h2>
+                                        <h2 class="display-5 fw-bold mb-4">$358<small class="fw-medium fs-3">/mo</small></h2>
+                                        <div class="col-12 d-grid gap-2 mb-4 mt-1">
+                                            <a type="button" class="btn btn-outline-primary py-3 btn-lg px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                            <p class="pricing-point-text mt-3">Everything in Hyper Growth +</p>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                            <p class="pricing-point-text mt-3">500 000 Emails Monthly</p>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                            <p class="pricing-point-text mt-3">100 000 Uploaded Contacts</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                <div class="row my-2">
+                    <div class="col-lg-3 col-sm-6 col-12 my-3 d-flex">
+                        <div class="card border-0 mx-auto bg-white rounded-4 shadow w-100" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                            <div class="card-body">
+                                <div class="col-12 p-1 pt-3">
+                                    <img src="images/plane.svg" class="img-fluid rounded-3" alt="profile">
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <h2 class="fw-bold mb-3">Growth</h2>
+                                    <h2 class="display-5 fw-bold mb-4">$37<small class="fw-medium fs-3">/mo</small></h2>
+                                    <div class="col-12 d-grid gap-2 mb-4 mt-1">
+                                        <a type="button" class="btn btn-outline-primary py-3 btn-lg px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">Unlimited Email Accounts</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">Unlimited Email Warmup</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">1000 Uploaded Contacts</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">5000 Emails Monthly</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">Chat Support</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12 my-3 d-flex">
+                        <div class="card border-0 mx-auto bg-white rounded-4 shadow w-100" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                            <div class="card-body">
+                                <div class="col-12 p-1 pt-3">
+                                    <img src="images/rocket.svg" class="img-fluid rounded-3" alt="profile">
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <h2 class="fw-bold mb-3">Hypergrowth</h2>
+                                    <h2 class="display-5 fw-bold mb-1">$77.6<small class="fw-medium fs-3">/mo</small></h2>
+                                    <div class="col-12 d-grid gap-2 mb-4 ">
+                                        <a type="button" class="btn btn-primary py-3 btn-lg px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">Unlimited Email Accounts</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">Unlimited Email Warmup</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">25 000 Uploaded Contacts</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">100 000 Emails Monthly</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">Premium Live Support</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12 my-3 d-flex">
+                        <div class="card border-0 mx-auto bg-white rounded-4 shadow w-100" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                            <div class="card-body">
+                                <div class="col-12 p-1 pt-3">
+                                    <img src="images/star.svg" class="img-fluid rounded-3" alt="profile">
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <h2 class="fw-bold mb-3">Light Speed</h2>
+                                    <h2 class="display-5 fw-bold mb-4">$286.3<small class="fw-medium fs-3">/mo</small></h2>
+                                    <div class="col-12 d-grid gap-2 mb-4 mt-1">
+                                        <a type="button" class="btn btn-outline-primary py-3 btn-lg px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">Everything in Hyper Growth +</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">500 000 Emails Monthly</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">100 000 Uploaded Contacts</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12 my-3 d-flex">
+                        <div class="card border-0 mx-auto bg-white rounded-4 shadow w-100" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                            <div class="card-body">
+                                <div class="col-12 p-1 pt-3">
+                                    <img src="images/thunder.svg" class="img-fluid rounded-3" alt="profile">
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <h2 class="fw-bold mb-3">Enterprise</h2>
+                                    <h2 class="display-5 fw-bold mb-4">Custom</h2>
+                                    <div class="col-12 d-grid gap-2 mb-4 mt-1">
+                                        <a type="button" class="btn btn-outline-primary py-3 btn-lg px-4 fw-semibold fs-19 rounded-5">BOOK A DEMO</a>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">Everything in Hyper Growth +</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">500 000+ Emails Monthly</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">100 000+ Uploaded Contacts</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">Dedicated Account Manager</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">Shared Slack Channel</p>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/check-circle.svg" alt="check-circle" class="me-3">
+                                        <p class="pricing-point-text mt-3">Private Deliverability Network</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Private Community box -->
+    <div class="container py-5">
+        <div class="row px-4">
+            <div class="card mb-3 border-0 w-100 community-bg" style="max-width: 1440px;">
+                <div class="row g-0">
+                    <div class="col-md-7">
+                        <div class="card-body pt-5 ps-5" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+                            <h2 class="fw-semibold fs-52 mt-3 mb-5 text-white">Learn From The Best in <span class="bg-gradiant">Our Private Community</span></h2>
+                            <p class="fs-5 text-white">Get access to our Private Facebook Community where you can learn from other similar entrepreneurs. See what’s working and not working for them. Ask questions and get answers from our experts.</p>
+                            <div class="col-12 col-sm-6 mx-auto mb-4">
+                                <a type="button" class="btn btn-primary py-2  px-4 fw-semibold fs-19 rounded-5 text-white">START FOR FREE</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 position-relative">
+                        <div class="position-relative ">
+                            <img src="images/Community1.png" alt="info" class="w-100 z-n1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                            <img src="images/Community3.png" alt="like" class="w-25 position-absolute rounded-4 woman-setting p-3 z-1"  data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                            <!-- <div class="col-3 bg-white position-absolute rounded-4 like-setting p-3 z-1">
+                            </div> -->
+                            <img src="images/Community2.png" alt="like" class="w-25 position-absolute rounded-4 man-setting p-3 z-1"  data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="200">
+                            <!-- <div class="col-1 bg-warning position-absolute rounded-4 undefined-setting p-3 shadow z-1">
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Founder cards box -->
+    <div class="container">
+        <div class="row my-2 bottom-fade">
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="w-100 h-auto mx-auto bg-white p-3 rounded shadow mx-3 foundersbox my-3" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+                    <p class="fs-20 fs-14">“I’ve specialised in email marketing since 2018 and in this time I've used almost every popular email outreach tool available on the market today - <span class="bg-gradiant">Instantly is hands down my favourite of them all.</span>”</p>
+                    <div class="card border-0 w-100">
+                        <div class="row g-0">
+                            <div class="col-2 p-1 pt-4">
+                                <img src="images/man1.png" class="img-fluid rounded-5" alt="profile">
+                            </div>
+                            <div class="col-9">
+                                <div class="card-body pb-0">
+                                    <p class="bg-gradiant fw-bold mb-2 h6 text-uppercase person-name">SAM WILSON</p>
+                                    <p class="fw-semibold text-light-gray mb-0 h6 person-name person-designation">Managing Director @ Canbury Partners</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 h-auto mx-auto bg-white p-3 rounded shadow mx-3 foundersbox my-3" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+                    <p class="fs-20 fs-14">"I've tried a few other email automation tools but Instantly beats all of them in terms of ease of use, deliverability optimization settings, unlimited email account additions. One top of the amazing features,<span class="bg-gradiant">their support team is world class and very helpful when needed."</span>”</p>
+                    <div class="card border-0 w-100">
+                        <div class="row g-0">
+                            <div class="col-2 p-1 pt-4">
+                                <img src="images/man4.png" class="img-fluid rounded-5" alt="profile">
+                            </div>
+                            <div class="col-9">
+                                <div class="card-body pb-0">
+                                    <p class="bg-gradiant fw-bold mb-2 h6 text-uppercase person-name">Sanjay John Eapen</p>
+                                    <p class="fw-semibold text-light-gray mb-0 h6 person-name person-designation">CEO @ Thincture</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="w-100 h-auto mx-auto bg-white p-3 rounded shadow mx-3 foundersbox my-3" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+                    <p class="fs-20 fs-14">“Instantly is the exact email outreach solution that <span class="bg-gradiant">I always wish existed</span>. We’ve tried almost every product that people in the outbound space talks about and none of them even comes close to this.”</p>
+                    <div class="card border-0 w-100">
+                        <div class="row g-0">
+                            <div class="col-2 p-1 pt-4">
+                                <img src="images/man2.png" class="img-fluid rounded-5" alt="profile">
+                            </div>
+                            <div class="col-9">
+                                <div class="card-body pb-0">
+                                    <p class="bg-gradiant fw-bold mb-2 h6 text-uppercase person-name">Tony Liu</p>
+                                    <p class="fw-semibold text-light-gray mb-0 h6 person-name person-designation">CEO @ Omnichannel</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 h-auto mx-auto bg-white p-3 rounded shadow mx-3 foundersbox my-3" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+                    <p class="fs-20 fs-14">"It's super easy to use. I've used a lot of softwares, but <span class="bg-gradiant">Instantly comes with easiest and most user friendly interface."</span></p>
+                    <div class="card border-0 w-100">
+                        <div class="row g-0">
+                            <div class="col-2 p-1 pt-4">
+                                <img src="images/man5.webp" class="img-fluid rounded-5" alt="profile">
+                            </div>
+                            <div class="col-9">
+                                <div class="card-body pb-0">
+                                    <p class="bg-gradiant fw-bold mb-2 h6 text-uppercase person-name">SHIVANG SINGH</p>
+                                    <p class="fw-semibold text-light-gray mb-0 h6 person-name person-designation">CEO @ Emaily Zone</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-4 d-none d-lg-block">
+                <div class="w-100 h-auto mx-auto bg-white p-3 rounded shadow mx-3 foundersbox my-3" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+                    <p class="fs-20 fs-14">The two best things about Instantly is that it allows you to send at scale, and the team teaches you how to do it.<span class="bg-gradiant">If you are on a normal email outreach program then you have no clue what you are missing out on.</span>”</p>
+                    <div class="card border-0 w-100">
+                        <div class="row g-0">
+                            <div class="col-2 p-1 pt-4">
+                                <img src="images/man3.png" class="img-fluid rounded-5" alt="profile">
+                            </div>
+                            <div class="col-9">
+                                <div class="card-body pb-0">
+                                    <p class="bg-gradiant fw-bold mb-2 h6 text-uppercase person-name">david taggart</p>
+                                    <p class="fw-semibold text-light-gray mb-0 h6 person-name person-designation">Founder @ PDMacro</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100 h-auto mx-auto bg-white p-3 rounded shadow mx-3 foundersbox my-3" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+                    <p class="fs-20 fs-14">The overall<span class="bg-gradiant">UI is very clean and they have been adding new features frequently</span>based on customer feedback which is great. Love Instantly!</p>
+                    <div class="card border-0 w-100">
+                        <div class="row g-0">
+                            <div class="col-2 p-1 pt-4">
+                                <img src="images/man6.png" class="img-fluid rounded-5" alt="profile">
+                            </div>
+                            <div class="col-9">
+                                <div class="card-body pb-0">
+                                    <p class="bg-gradiant fw-bold mb-2 h6 text-uppercase person-name">Tasha Roachford</p>
+                                    <p class="fw-semibold text-light-gray mb-0 h6 person-name person-designation">CEO @ Brand Digitizer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-9 col-lg-2 mx-auto">
+            <a type="button" class="btn btn-outline-primary py-2 px-4 fw-semibold fs-19 rounded-5">START FOR FREE</a>
+        </div>
+    </div>
+    <div class="foooter-scetion footer-bg-img">
+        <section class="hero-section col-11 mx-auto rounded" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <h4 class="hero-section-title">Get started for free</h4>
+            <p>Send your first outreach campaign today.</p>
+            <button class="btn btn-primary rounded-pill fw-bold px-5">Start for Free</button>
+            <img src="images/638b1ffb698caa4b9b3e80ea_green.svg" class="img-1" alt="" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+            <img src="images/638b20198563257f83df0a78_red.svg" class="img-2" alt="" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+            <img src="images/638b202bc239def125b03735_Group 40762.svg" class="img-3" alt="" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+            <img src="images/638b2039b9a23c8b33bb7d61_Group 244.svg" class="img-4" alt="" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+
+            <div class="cards-container ">
+                <!-- Warmup Emails Card -->
+                <div class="card footer-cards">
+                    <img src="images/638b1b38346ec7f26b78a7f0_Group 179-min.png" alt="">
+                </div>
+
+                <!-- Email Account Card -->
+                <div class="card footer-cards">
+                    <img src="images/638b1bc10787c72670cc95bc_Group 165-min-p-500.png" alt="">
+
+                </div>
+
+                <!-- Email to Use Card -->
+                <div class="card footer-cards">
+                    <img src="images/638b1e1f95fb43f7542b8475_Group 243-min.png" alt="">
+
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-5 pt-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/63fcf482121cf17194a56a8e_Instantly Logo Footer.svg" alt="Logo">
+
+                    </div>
+                    <p class="mt-5 pt-5 text-white fw-semibold">Copyright @ Instantly 2024<br>Sales Engagement & Lead Intelligence</p>
+                    <!-- <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f">F</i></a>
+                        <a href="#"><i class="fab fa-linkedin-in">L</i></a>
+                        <a href="#"><i class="fab fa-youtube">Y</i></a>
+                    </div> -->
+                </div>
+                <div class="footer-section">
+                    <h3 class="text-white fw-semibold fs-3">Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Warmup</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">CRM</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Wall Of Love</a></li>
+                        <li><a href="#">Experts</a></li>
+                        <li><a href="#">Affiliate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="text-white fw-semibold fs-3">Support</h3>
+                    <ul>
+                        <li><a href="#">Help Desk</a></li>
+                        <li><a href="#">Roadmap</a></li>
+                        <li><a href="#">Facebook Group</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="text-white fw-semibold fs-3">Company</h3>
+                    <ul>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Don't Sell My Info</a></li>
+                        <li><a href="#">Privacy Center</a></li>
+                        <li><a href="#">Cookie Declaration</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-white">
+                © Instantly 2024 - All rights reserved.
+            </div>
+        </footer>
+
+    </div>
+    
+
+
+
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        function toggleFAQ(element) {
+            // Get the content and arrow of the clicked FAQ item
+            const content = element.nextElementSibling;
+            const arrow = element.querySelector('.arrow');
+    
+            // Check if content is already visible
+            const isOpen = content.style.display === 'block';
+    
+            // Close all other content
+            const allContents = document.querySelectorAll('.faq-content');
+            allContents.forEach((content) => {
+                content.style.display = 'none';
+            });
+    
+            // Reset all arrows
+            const allArrows = document.querySelectorAll('.arrow');
+            allArrows.forEach((arrow) => {
+                arrow.classList.remove('rotate');
+            });
+    
+            // If the clicked FAQ wasn't open, open it
+            if (!isOpen) {
+                content.style.display = 'block';
+                arrow.classList.add('rotate');
+            }
+        }
+        // dropdown js
+
+                // Hover functionality for "Products"
+        let productsAnchor = document.getElementById('products-anchor');
+        let productsDropdown = document.getElementById('products-dropdown');
+
+        productsAnchor.addEventListener('mouseenter', function () {
+            productsDropdown.style.display = 'block';
+        });
+        productsAnchor.addEventListener('mouseleave', function () {
+            productsDropdown.style.display = 'none';
+        });
+        productsDropdown.addEventListener('mouseenter', function () {
+            productsDropdown.style.display = 'block';
+        });
+        productsDropdown.addEventListener('mouseleave', function () {
+            productsDropdown.style.display = 'none';
+        });
+
+        // Hover functionality for "Use Cases"
+        let usecasesAnchor = document.getElementById('usecases-anchor');
+        let usecasesDropdown = document.getElementById('usecases-dropdown');
+
+        usecasesAnchor.addEventListener('mouseenter', function () {
+            usecasesDropdown.style.display = 'block';
+        });
+        usecasesAnchor.addEventListener('mouseleave', function () {
+            usecasesDropdown.style.display = 'none';
+        });
+        usecasesDropdown.addEventListener('mouseenter', function () {
+            usecasesDropdown.style.display = 'block';
+        });
+        usecasesDropdown.addEventListener('mouseleave', function () {
+            usecasesDropdown.style.display = 'none';
+        });
+
+        // Hover functionality for "Resources"
+        let resourcesAnchor = document.getElementById('resources-anchor');
+        let resourcesDropdown = document.getElementById('resources-dropdown');
+
+        resourcesAnchor.addEventListener('mouseenter', function () {
+            resourcesDropdown.style.display = 'block';
+        });
+        resourcesAnchor.addEventListener('mouseleave', function () {
+            resourcesDropdown.style.display = 'none';
+        });
+        resourcesDropdown.addEventListener('mouseenter', function () {
+            resourcesDropdown.style.display = 'block';
+        });
+        resourcesDropdown.addEventListener('mouseleave', function () {
+            resourcesDropdown.style.display = 'none';
+        });
+
+        // Select the images
+        // const heroManImg = document.querySelector('.hero-man-img');
+        // const heroImg = document.querySelector('.hero-img');
+
+        // // Intersection Observer Callback
+        // function handleIntersection(entries) {
+        //     entries.forEach(entry => {
+        //         if (entry.isIntersecting) {
+        // // Add the 'animate' class to trigger animation
+        // entry.target.classList.add('animate');
+        //         }
+        //     });
+        // }
+        // // Create Observer
+        // const observer = new IntersectionObserver(handleIntersection, {
+        // threshold: 0.5, // Trigger when 50% of the div is visible
+        // });
+        // // Observe both images
+        // observer.observe(heroManImg);
+        // observer.observe(heroImg);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+  </body>
+</html>
